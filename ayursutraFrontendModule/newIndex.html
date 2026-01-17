@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyurSutra - Ancient Wisdom, Modern Care</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+        }
+
+        /* Keyframe animation for the bounce effect */
+        @keyframes bounce-effect {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Keyframe animation for the breathing effect */
+        @keyframes breathing-effect {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Keyframe animation for the floating effect */
+        @keyframes float-effect {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand .logo-icon {
+            color: #28a745; /* A green accent color */
+            margin-right: 8px;
+        }
+
+        .nav-stats .stat-item {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 0.35rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .nav-actions .nav-link {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        
+        /* Language Switcher Custom Styles */
+        #language-switcher-container .dropdown-toggle {
+            color: #6c757d;
+            border: none;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+        }
+        #language-switcher-container .dropdown-toggle::after {
+            font-size: 0.7em;
+            vertical-align: middle;
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            padding: 6rem 0;
+            background-color: #fdfdfd;
+            position: relative;
+            overflow: hidden; /* Keeps floating emojis contained */
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2; /* Ensures content is above the emojis */
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.6;
+            animation: float-effect infinite ease-in-out;
+            z-index: 1; /* Places emojis behind the content */
+        }
+        .floating-emoji img {
+            width: 100%;
+            height: auto;
+        }
+
+
+        .hero-section h1 {
+            font-weight: 700;
+            color: #2c5b36; /* Dark green text */
+        }
+
+        .hero-section .lead {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #6c757d;
+        }
+
+        .btn-portal {
+            font-weight: 500;
+        }
+
+        .stats-card {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+        .stats-card .icon {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            color: #28a745;
+        }
+        .stats-card .stat-number {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #343a40;
+        }
+        .stats-card .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Shared Section Styles */
+        .content-section {
+            padding: 4rem 0;
+        }
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 3rem;
+            color: #343a40;
+        }
+
+        /* Features Section Card */
+        .feature-card {
+            background-color: white;
+            border: 1px solid #f0f0f0;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+        .feature-card .icon-box {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            animation: bounce-effect 2.5s infinite ease-in-out;
+        }
+        .feature-card h5 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            color: #6c757d;
+        }
+        
+        /* Therapies Section Card */
+        .therapy-card {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .therapy-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+        .therapy-card .therapy-icon {
+            font-size: 2.5rem;
+            margin-right: 1.5rem;
+            animation: breathing-effect 3s infinite ease-in-out;
+        }
+        .therapy-card .therapy-details h5 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .therapy-card .therapy-details p {
+            margin-bottom: 0.75rem;
+            color: #6c757d;
+        }
+        .therapy-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        /* Fact Modal Styles */
+        .fact-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1050;
+        }
+
+        .fact-modal {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .fact-modal h3 {
+            color: #4a7c59;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .fact-modal p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .close-fact-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: #6c757d;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        .chatbot-fab .fab-button {
+            background-color: #28a745;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: none;
+        }
+        .chatbot-fab .fab-text {
+            background-color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+            font-weight: 500;
+            max-width: 200px;
+        }
+
+        .chatbot-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1060; /* Higher than fact modal */
+        }
+
+        .chatbot-modal {
+            background: #fff;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            height: 80%;
+            max-height: 700px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chatbot-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .chatbot-modal-header h5 {
+            margin: 0;
+            font-weight: 600;
+        }
+        .close-chatbot-btn {
+            font-size: 1.5rem;
+            border: none;
+            background: none;
+            color: #6c757d;
+        }
+        .chatbot-modal iframe {
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-leaf logo-icon"></i>
+                <span data-translate-key="app_title">AyurSutra</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="nav-stats mx-auto d-none d-lg-flex">
+                    <div class="stat-item"><strong>16B</strong> <span data-translate-key="market_stat">MARKET (USD)</span></div>
+                    <div class="stat-item"><strong id="nav-patients-stat">0K</strong> <span data-translate-key="patients_stat">PATIENTS</span></div>
+                    <div class="stat-item"><strong id="nav-success-stat">0%</strong> <span data-translate-key="success_stat">SUCCESS</span></div>
+                </div>
+                <ul class="navbar-nav ms-auto nav-actions align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6em;">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center" id="language-switcher-container">
+                        <!-- The Language Switcher will be dynamically injected here by translate.js -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-moon"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section text-center">
+            
+            <!-- Floating Emojis Background -->
+            <div class="floating-emoji-container">
+                <span class="floating-emoji" style="top: 10%; left: 15%; font-size: 3rem; animation-duration: 8s;">🧘</span>
+                <span class="floating-emoji" style="top: 20%; right: 10%; font-size: 2rem; animation-duration: 10s; animation-delay: 2s;">🌿</span>
+                <span class="floating-emoji" style="bottom: 15%; left: 20%; font-size: 2.5rem; animation-duration: 9s; animation-delay: 1s;">💆</span>
+                <span class="floating-emoji" style="bottom: 25%; right: 25%; font-size: 3.5rem; animation-duration: 12s;">
+                    <img src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48"><path fill="%237fc6a6" stroke="%232e6b63" stroke-width="1.2" d="M32 6c4.8 6.8 9.6 13 12.8 20.8 1.6 4-0.2 8.8-4.6 10.6C38 40.6 35 40.2 32 38 29 40.2 26 40.6 25.8 37.4 21.4 35.6 19.6 30.8 21.2 26C24.4 18.2 28.8 11 32 6z"/><path fill="%237fc6a6" stroke="%232e6b63" stroke-width="1.2" d="M10 34c6-4 11-6.8 18-8-3.8 3.6-6.8 8.2-8.4 12.8-1.6 4.6-1.2 7.8-1.2 8.8 0 0-5.6-5-8.4-13.6z"/><path fill="%237fc6a6" stroke="%232e6b63" stroke-width="1.2" d="M54 34c-6-4-11-6.8-18-8 3.8 3.6 6.8 8.2 8.4 12.8 1.6 4.6 1.2 7.8 1.2 8.8 0 0 5.6-5 8.4-13.6z"/><path fill="%23eaf7f0" stroke="%232e6b63" stroke-width="0.9" d="M32 12c2.8 4 6.6 8 9.6 12-3 2-6 3.2-9.6 3.2S25.4 26 22.4 24C25.2 20 29.2 16 32 12z"/><path fill="%23eaf7f0" stroke="%232e6b63" stroke-width="0.9" d="M24 30c2.2 1.8 5.2 3.2 8 3.6-1.6 1.8-3.4 3.4-5.6 4.6C24.6 36.6 22 33.6 24 30z"/><path fill="%23eaf7f0" stroke="%232e6b63" stroke-width="0.9" d="M40 30c-2.2 1.8-5.2 3.2-8 3.6 1.6 1.8 3.4 3.4 5.6 4.6 3.6-1.4 6.2-4.4 2.4-8.2z"/><path fill="%235aa488" stroke="%232e6b63" stroke-width="0.8" d="M30.6 44c0 4 2.8 8 1.4 12H31.6c-1.4-4 1.4-8 1.4-12z"/></svg>' alt="lotus icon" />
+                </span>
+                <span class="floating-emoji" style="top: 50%; left: 5%; animation-duration: 7s; animation-delay: 3s;">🌿</span>
+                <span class="floating-emoji" style="top: 60%; right: 18%; animation-duration: 11s; animation-delay: 4s;">🧘</span>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <h1 class="display-4" data-translate-key="hero_title">Ancient Wisdom, Modern Care</h1>
+                        <p class="lead mt-3" data-translate-key="hero_subtitle">
+                            Comprehensive Panchakarma Management System for Traditional Ayurvedic Healing with Real-time Progress Tracking & AI-Powered Insights
+                        </p>
+                        
+                        <div class="d-flex justify-content-center flex-wrap gap-2 my-4">
+                            <button class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-calendar-check me-2"></i><span data-translate-key="feature_scheduling">Smart Scheduling</span></button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-bell me-2"></i><span data-translate-key="feature_notifications">Real-time Notifications</span></button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-chart-line me-2"></i><span data-translate-key="feature_analytics">Progress Analytics</span></button>
+                        </div>
+
+                        <div class="d-flex justify-content-center gap-3 my-4">
+                            <button class="btn btn-primary btn-lg btn-portal px-4" onclick="window.location.href='patient_portal.html'"><i class="fa-solid fa-user me-2"></i><span data-translate-key="patient_portal_button">Patient Portal</span></button>
+                            <button class="btn btn-outline-primary btn-lg btn-portal px-4" onclick="window.location.href='doctorLogin.html'"><i class="fa-solid fa-user-doctor me-2"></i><span data-translate-key="doctor_portal_button">Doctor Portal</span></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="row g-4 mt-5">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stats-card">
+                            <i class="fa-solid fa-hospital icon"></i>
+                            <div>
+                                <div class="stat-number" id="centers-stat">0</div>
+                                <div class="stat-label" data-translate-key="centers_connected_label">Centers Connected</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stats-card">
+                            <i class="fa-solid fa-user-doctor icon"></i>
+                            <div>
+                                <div class="stat-number" id="practitioners-stat">0</div>
+                                <div class="stat-label" data-translate-key="practitioners_label">Active Practitioners</div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-6 col-lg-3">
+                        <div class="stats-card">
+                            <i class="fa-solid fa-users icon"></i>
+                            <div>
+                                <div class="stat-number" id="patients-stat">0</div>
+                                <div class="stat-label" data-translate-key="patients_served_label">Patients Served</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stats-card">
+                           <i class="fa-solid fa-chart-pie icon"></i>
+                            <div>
+                                <div class="stat-number" id="success-rate-stat">0%</div>
+                                <div class="stat-label" data-translate-key="success_rate_label">Success Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose AyurSutra Section -->
+        <section class="content-section bg-light">
+            <div class="container text-center">
+                <h2 class="section-title" data-translate-key="why_choose_title">Why Choose AyurSutra?</h2>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card text-center">
+                            <div class="icon-box text-danger" style="animation-delay: 0s;"><i class="fa-solid fa-cogs"></i></div>
+                            <h5 data-translate-key="feature_automated_therapy_title">Automated Therapy Scheduling</h5>
+                            <p data-translate-key="feature_automated_therapy_desc">AI-powered scheduling system that matches patient needs with practitioner expertise and availability.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card text-center">
+                           <div class="icon-box text-warning" style="animation-delay: 0.2s;"><i class="fa-solid fa-bell"></i></div>
+                            <h5 data-translate-key="feature_smart_notifications_title">Smart Notifications</h5>
+                            <p data-translate-key="feature_smart_notifications_desc">Personalized pre and post-procedure alerts with customizable channels including SMS, email, and in-app.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card text-center">
+                            <div class="icon-box text-primary" style="animation-delay: 0.4s;"><i class="fa-solid fa-chart-bar"></i></div>
+                            <h5 data-translate-key="feature_progress_tracking_title">Real-time Progress Tracking</h5>
+                            <p data-translate-key="feature_progress_tracking_desc">Visual analytics dashboard showing therapy progress, recovery milestones, and patient feedback integration.</p>
+                        </div>
+                    </div>
+                     <div class="col-lg-4 col-md-6">
+                        <div class="feature-card text-center">
+                            <div class="icon-box text-info" style="animation-delay: 0.6s;"><i class="fa-solid fa-sync-alt"></i></div>
+                            <h5 data-translate-key="feature_feedback_loop_title">Integrated Feedback Loop</h5>
+                            <p data-translate-key="feature_feedback_loop_desc">Continuous patient monitoring with adaptive treatment adjustments based on real-time responses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Panchakarma Therapies Section -->
+        <section class="content-section">
+             <div class="container">
+                <h2 class="section-title text-center" data-translate-key="therapies_title">Our Panchakarma Therapies</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-9">
+                        <div class="therapy-card">
+                             <div class="therapy-icon text-success" style="animation-delay: 0s;">🌿</div>
+                            <div class="therapy-details">
+                                <h5 data-translate-key="therapy_virechana_title">Virechana (Therapeutic Purgation)</h5>
+                                <p data-translate-key="therapy_virechana_desc">Deep detoxification therapy for Pitta disorders, digestive issues, and metabolic imbalances.</p>
+                                <div class="therapy-meta">
+                                    <span><i class="fa-solid fa-clock me-2"></i>7-21 days</span>
+                                    <span><i class="fa-solid fa-check-circle me-2"></i>98% success rate</span>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="therapy-card">
+                            <div class="therapy-icon text-warning" style="animation-delay: 0.5s;">💆</div>
+                            <div class="therapy-details">
+                                <h5 data-translate-key="therapy_abhyanga_title">Abhyanga (Oil Massage)</h5>
+                                <p data-translate-key="therapy_abhyanga_desc">Therapeutic full-body massage with medicated oils for stress relief and circulation improvement.</p>
+                                <div class="therapy-meta">
+                                     <span><i class="fa-solid fa-clock me-2"></i>3-14 days</span>
+                                    <span><i class="fa-solid fa-smile me-2"></i>96% satisfaction</span>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="therapy-card">
+                             <div class="therapy-icon text-info" style="animation-delay: 1s;">🧘</div>
+                            <div class="therapy-details">
+                                <h5 data-translate-key="therapy_shirodhara_title">Shirodhara (Oil Pouring)</h5>
+                                <p data-translate-key="therapy_shirodhara_desc">Continuous stream of medicated oil on forehead for mental clarity and stress reduction.</p>
+                                <div class="therapy-meta">
+                                     <span><i class="fa-solid fa-clock me-2"></i>5-14 days</span>
+                                    <span><i class="fa-solid fa-arrow-up me-2"></i>92% improvement</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-4">
+        <div class="container">
+            <p class="mb-0" data-translate-key="footer_copyright">&copy; 2025 AyurSutra. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Ayurveda Fact Modal -->
+    <div class="fact-overlay" id="fact-overlay">
+        <div class="fact-modal">
+            <button class="close-fact-btn" id="close-fact-btn">&times;</button>
+            <h3>🌱 Ayurveda Fact</h3>
+            <p id="fact-of-the-day-content">Loading your daily wellness fact...</p>
+        </div>
+    </div>
+
+    <!-- Chatbot FAB -->
+    <div class="chatbot-fab" id="open-chatbot">
+        <div class="fab-text shadow-sm" data-translate-key="chatbot_greeting">Hi, I'm AyurBot, your AI assistant.</div>
+        <button class="fab-button">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+    </div>
+
+    <!-- Chatbot Modal -->
+    <div class="chatbot-overlay" id="chatbot-overlay">
+        <div class="chatbot-modal">
+            <div class="chatbot-modal-header">
+                <h5><i class="fa-solid fa-leaf me-2"></i>AyurSutra Assistant</h5>
+                <button class="close-chatbot-btn" id="close-chatbot">&times;</button>
+            </div>
+            <iframe
+                src="https://0fffdfbfb39c8f5e96.gradio.live"
+                style="width: 100%; height: 100%; border: none;">
+            </iframe>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Firebase SDK & Page-specific Logic -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6S7fpG11zR_2ZPLcd73dL_uHTBBl5pZA",
+            authDomain: "ayursutra-7d1e0.firebaseapp.com",
+            projectId: "ayursutra-7d1e0",
+            storageBucket: "ayursutra-7d1e0.firebasestorage.app",
+            messagingSenderId: "471241479809",
+            appId: "1:471241479809:web:410f2e72be20cc41509f80",
+            measurementId: "G-N63YLKQYX3"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
+             // --- AYURVEDA FACTS LOGIC ---
+            const factOverlay = document.getElementById('fact-overlay');
+            const closeFactBtn = document.getElementById('close-fact-btn');
+            const factContent = document.getElementById('fact-of-the-day-content');
+            let facts = [];
+
+            function showFactModal() {
+                if (facts.length === 0) {
+                    factContent.textContent = "Ayurveda emphasizes balancing the three doshas: Vata, Pitta, and Kapha.";
+                } else {
+                    const randomIndex = Math.floor(Math.random() * facts.length);
+                    factContent.textContent = facts[randomIndex];
+                }
+                factOverlay.style.display = 'flex';
+            }
+
+            function hideFactModal() {
+                factOverlay.style.display = 'none';
+            }
+
+            closeFactBtn.addEventListener('click', hideFactModal);
+            factOverlay.addEventListener('click', (e) => {
+                if (e.target === factOverlay) {
+                    hideFactModal();
+                }
+            });
+            
+            fetch('facts.txt')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    facts = text.split('\n').map(fact => fact.trim()).filter(fact => fact.length > 0);
+                    showFactModal();
+                })
+                .catch(error => {
+                    console.error("Error loading facts.txt:", error);
+                    showFactModal(); // Show with fallback even if fetch fails
+                });
+            
+            // --- CHATBOT MODAL LOGIC ---
+            const openChatbotBtn = document.getElementById('open-chatbot');
+            const closeChatbotBtn = document.getElementById('close-chatbot');
+            const chatbotOverlay = document.getElementById('chatbot-overlay');
+
+            openChatbotBtn.addEventListener('click', () => {
+                chatbotOverlay.style.display = 'flex';
+            });
+
+            closeChatbotBtn.addEventListener('click', () => {
+                chatbotOverlay.style.display = 'none';
+            });
+            
+            chatbotOverlay.addEventListener('click', (e) => {
+                if (e.target === chatbotOverlay) {
+                     chatbotOverlay.style.display = 'none';
+                }
+            });
+
+
+            /**
+             * This function animates a number from 0 to a target value.
+             */
+            function animateCountUp(elementId, target, duration = 2000, suffix = '') {
+                const element = document.getElementById(elementId);
+                if (!element) return;
+
+                const isFloat = target % 1 !== 0; // Check if the target is a decimal
+                let startTime = null;
+
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    const currentValue = progress * target;
+
+                    if (isFloat) {
+                        element.textContent = currentValue.toFixed(1) + suffix;
+                    } else {
+                        element.textContent = Math.floor(currentValue) + suffix;
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        element.textContent = target + suffix;
+                    }
+                }
+                requestAnimationFrame(step);
+            }
+
+            // --- FETCH DATA FROM FIRESTORE ---
+            async function fetchDataFromDB() {
+                try {
+                    // Get a reference to the specific document
+                    const docRef = doc(db, "dashboardStats", "mainData");
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        console.log("Document data:", docSnap.data());
+                        return docSnap.data();
+                    } else {
+                        console.log("No such document!");
+                        // Return default values if document doesn't exist
+                        return { centers: 0, practitioners: 0, patientsServed: 0, successRate: 0 };
+                    }
+                } catch (error) {
+                    console.error("Error fetching data from Firestore:", error);
+                    // Return default values on error
+                    return { centers: 0, practitioners: 0, patientsServed: 0, successrate: 0 };
+                }
+            }
+
+            // Fetch the data and then run the animations
+            fetchDataFromDB().then(data => {
+                // Animate the main stats cards
+                animateCountUp('centers-stat', data.centers, 1500);
+                animateCountUp('practitioners-stat', data.practitioners, 1800);
+                animateCountUp('patients-stat', data.patientsServed, 2000);
+                animateCountUp('success-rate-stat', data.successRate, 2200, '%');
+                
+                // Update navbar stats directly without animation
+                const navPatientsStat = document.getElementById('nav-patients-stat');
+                const navSuccessStat = document.getElementById('nav-success-stat');
+
+                if (navPatientsStat && data.patientsServed) {
+                    // Format the number to 'K' format if it's over 1000
+                    const patientsInK = (data.patientsServed / 1000).toFixed(1);
+                    navPatientsStat.textContent = `${patientsInK}K`;
+                }
+
+                if (navSuccessStat && data.successRate) {
+                    navSuccessStat.textContent = `${data.successRate}%`;
+                }
+            });
+        });
+    </script>
+    <script src="translate.js"></script>
+</body>
+</html>
+

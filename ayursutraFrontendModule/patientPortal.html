@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal - AyurSutra</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js for Analytics Graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* A slightly different BG for the portal */
+            color: #333;
+        }
+
+        /* Navbar Styles (Reused from landing page for consistency) */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .navbar-brand {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand .logo-icon {
+            color: #28a745;
+            margin-right: 8px;
+        }
+        .nav-stats .stat-item {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 0.35rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+        .nav-actions .nav-link {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content Wrapper */
+        .main-content {
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        /* Portal Header */
+        .portal-header {
+            margin-bottom: 2rem;
+        }
+        .portal-header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+        .portal-header p {
+            color: #6c757d;
+        }
+        
+        /* Custom Card Styles */
+        .dashboard-card {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            padding: 1.5rem;
+            height: 100%;
+        }
+        .dashboard-card-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Treatment Progress Card */
+        .progress-circle {
+            width: 100px;
+            height: 100px;
+        }
+        .progress-details .phase {
+            font-weight: 500;
+            color: #6c757d;
+        }
+
+        /* Appointments Card */
+        .appointment-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .appointment-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .appointment-date {
+            text-align: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        .appointment-date .month {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #6c757d;
+        }
+        .appointment-date .day {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .appointment-info h6 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .appointment-info p {
+            color: #6c757d;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Recovery Milestones Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background-color: #e9ecef;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #28a745;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            border: 3px solid white;
+        }
+        .timeline-date {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+        .timeline-content h6 {
+            font-weight: 600;
+        }
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        /* Feedback Section */
+        .feedback-emojis {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+        }
+        .feedback-emojis .emoji {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            opacity: 0.5;
+        }
+        .feedback-emojis .emoji:hover, .feedback-emojis .emoji.selected {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        
+        /* Tip of the Day Modal Styles */
+        .tip-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1050;
+        }
+
+        .tip-modal {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .tip-modal h3 {
+            color: #4a7c59;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .tip-modal p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .close-tip-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: #6c757d;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <i class="fa-solid fa-leaf logo-icon"></i> AyurSutra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="nav-stats mx-auto d-none d-lg-flex">
+                    <div class="stat-item"><strong>16B</strong> MARKET (USD)</div>
+                    <div class="stat-item"><strong id="nav-patients-stat">15.4K</strong> PATIENTS</div>
+                    <div class="stat-item"><strong id="nav-success-stat">94.8%</strong> SUCCESS</div>
+                </div>
+                <ul class="navbar-nav ms-auto nav-actions align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6em;">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-globe"></i> EN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-moon"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Portal Header -->
+            <div class="portal-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h1>Patient Portal</h1>
+                    <p class="mb-0">Welcome back, Raj Kumar</p>
+                </div>
+                <div>
+                    <a href="bookAppointment.html" class="btn btn-primary"><i class="fa-solid fa-plus me-2"></i>Book Appointment</a>
+                </div>
+            </div>
+
+            <!-- Top Row: Progress and Appointments -->
+            <div class="row g-4 mb-4">
+                <div class="col-lg-5">
+                    <div class="dashboard-card">
+                        <h5 class="dashboard-card-title">Treatment Progress</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="progress-circle me-4 position-relative">
+                                <canvas id="progressChart"></canvas>
+                            </div>
+                            <div class="progress-details flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <span class="phase">Current Phase:</span>
+                                    <span>Purvakarma</span>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span>Sessions:</span>
+                                    <strong>5 / 12</strong>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span>Days Remaining:</span>
+                                    <strong>17</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="dashboard-card">
+                        <h5 class="dashboard-card-title">Upcoming Appointments</h5>
+                        <div class="appointment-item">
+                            <div class="appointment-date">
+                                <div class="month">SEP</div>
+                                <div class="day">05</div>
+                            </div>
+                            <div class="appointment-info flex-grow-1">
+                                <h6>Virechana Follow-up</h6>
+                                <p><i class="fa-solid fa-clock me-2"></i>10:00 AM - Dr. Rajesh Ayurvedi</p>
+                                <p><i class="fa-solid fa-location-dot me-2"></i>AIA Delhi</p>
+                            </div>
+                            <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-pen"></i></a>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-date">
+                                <div class="month">SEP</div>
+                                <div class="day">08</div>
+                            </div>
+                            <div class="appointment-info flex-grow-1">
+                                <h6>Progress Assessment</h6>
+                                <p><i class="fa-solid fa-clock me-2"></i>10:00 AM - Dr. Rajesh Ayurvedi</p>
+                                <p><i class="fa-solid fa-location-dot me-2"></i>AIA Delhi</p>
+                            </div>
+                            <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-pen"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recovery Milestones -->
+            <div class="dashboard-card mb-4">
+                <h5 class="dashboard-card-title">Recovery Milestones</h5>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2025-08-15</div>
+                            <h6>Initial consultation & constitution assessment</h6>
+                            <p>Vata-Pitta imbalance identified</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2025-08-18</div>
+                            <h6>Preparatory phase (Snehana) begun</h6>
+                            <p>Internal oleation with ghee</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2025-08-28</div>
+                            <h6>Recovery and diet management</h6>
+                            <p>Following prescribed diet plan</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon" style="background-color: #6c757d;"><i class="fa-solid fa-spinner"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2025-09-02</div>
+                            <h6>Mid-therapy assessment</h6>
+                            <p>Scheduled for progress evaluation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Feedback and Analytics -->
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="dashboard-card">
+                        <h5 class="dashboard-card-title">Today's Feedback</h5>
+                        <p class="text-muted small">How are you feeling?</p>
+                        <div class="feedback-emojis">
+                            <span class="emoji" data-value="1">😞</span>
+                            <span class="emoji" data-value="2">😟</span>
+                            <span class="emoji selected" data-value="3">😐</span>
+                            <span class="emoji" data-value="4">🙂</span>
+                            <span class="emoji" data-value="5">😃</span>
+                        </div>
+                        <p class="text-muted small mt-4">Symptom Level (1-10):</p>
+                        <div>
+                            <label for="energyRange" class="form-label">Energy</label>
+                            <input type="range" class="form-range" min="1" max="10" id="energyRange" value="7">
+                        </div>
+                        <div class="mt-3">
+                            <label for="digestionRange" class="form-label">Digestion</label>
+                            <input type="range" class="form-range" min="1" max="10" id="digestionRange" value="8">
+                        </div>
+                        <div class="mt-3">
+                            <label for="sleepRange" class="form-label">Sleep</label>
+                            <input type="range" class="form-range" min="1" max="10" id="sleepRange" value="8">
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-primary">Submit Feedback</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="dashboard-card">
+                        <h5 class="dashboard-card-title">Progress Analytics</h5>
+                        <canvas id="analyticsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <iframe href="https://f6f17ea5ec4bf0ca53.gradio.live"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Tip of the Day Modal -->
+    <div class="tip-overlay" id="tip-overlay">
+        <div class="tip-modal">
+            <button class="close-tip-btn" id="close-tip-btn">&times;</button>
+            <h3>🌱 Ayurveda Tip of the Day</h3>
+            <p id="tip-of-the-day-content">Loading your daily wellness tip...</p>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- AYURVEDA TIPS LOGIC ---
+            const tipOverlay = document.getElementById('tip-overlay');
+            const closeTipBtn = document.getElementById('close-tip-btn');
+            const tipContent = document.getElementById('tip-of-the-day-content');
+            let tips = []; // This will hold the tips fetched from the file
+
+            function showTipModal() {
+                if (tips.length === 0) {
+                     // Fallback tip in case the file doesn't load
+                    tipContent.textContent = "Stay hydrated and mindful today!";
+                } else {
+                    // Select a random tip
+                    const randomIndex = Math.floor(Math.random() * tips.length);
+                    tipContent.textContent = tips[randomIndex];
+                }
+                // Show the modal
+                tipOverlay.style.display = 'flex';
+            }
+
+            function hideTipModal() {
+                tipOverlay.style.display = 'none';
+            }
+
+            // Event listeners to close the modal
+            closeTipBtn.addEventListener('click', hideTipModal);
+            tipOverlay.addEventListener('click', (e) => {
+                if (e.target === tipOverlay) {
+                    hideTipModal();
+                }
+            });
+            
+            // Fetch tips from tips.txt and then show the modal
+            fetch('tips.txt')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    tips = text.split('\n').map(tip => tip.trim()).filter(tip => tip.length > 0);
+                    showTipModal();
+                })
+                .catch(error => {
+                    console.error("Error loading tips.txt:", error);
+                    // Show the modal even if fetching fails, with a default message.
+                    showTipModal();
+                });
+
+
+            // --- EXISTING PAGE LOGIC ---
+
+            // Treatment Progress Doughnut Chart
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            new Chart(progressCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Complete', 'Remaining'],
+                    datasets: [{
+                        data: [65, 35],
+                        backgroundColor: ['#28a745', '#e9ecef'],
+                        borderWidth: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: '80%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
+            });
+
+            // Progress Analytics Line Chart
+            const analyticsCtx = document.getElementById('analyticsChart').getContext('2d');
+            new Chart(analyticsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Current'],
+                    datasets: [
+                        {
+                            label: 'Energy Level',
+                            data: [3, 4, 4, 5, 6, 7, 7],
+                            borderColor: '#0d6efd',
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Digestion',
+                            data: [4, 5, 6, 7, 8, 8, 8],
+                            borderColor: '#fd7e14',
+                            tension: 0.3
+                        },
+                         {
+                            label: 'Sleep Quality',
+                            data: [2, 3, 5, 6, 7, 8, 8],
+                            borderColor: '#dc3545',
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Overall Wellness',
+                            data: [3, 4, 5, 6, 7, 7, 7],
+                            borderColor: '#6c757d',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+            // Emoji selector logic
+            const emojis = document.querySelectorAll('.feedback-emojis .emoji');
+            emojis.forEach(emoji => {
+                emoji.addEventListener('click', () => {
+                    emojis.forEach(e => e.classList.remove('selected'));
+                    emoji.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
