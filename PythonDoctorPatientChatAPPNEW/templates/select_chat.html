@@ -1,0 +1,159 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Select Chat Partner</title>
+</head>
+<body>
+    <h2>Select Chat Partner ({{ user_type|capitalize }})</h2>
+    <ul>
+        {% for partner in partners %}
+        <li><a href="{{ url_for('chat', partner_id=partner.id) }}">{{ partner.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html> -->
+
+
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+<head><title>Select Chat</title></head>
+<body>
+  <h2>Welcome, {{ session['username'] }}!</h2>
+  <p><a href="{{ url_for('logout') }}">Logout</a></p>
+  <h3>Select a user to chat with:</h3>
+  <ul>
+    {% for user in users %}
+      <li><a href="{{ url_for('chat', partner_id=user.id) }}">{{ user.name }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #e8f5e9, #f1fdf2);
+            color: #2e7d32;
+        }
+
+        .top-bar {
+            background-color: #2e7d32;
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .logout-button {
+            background-color: #ffffff;
+            color: #2e7d32;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .logout-button:hover {
+            background-color: #c8e6c9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(46, 125, 50, 0.1);
+        }
+
+        .welcome {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #388e3c;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #dcedc8;
+        }
+
+        li a {
+            display: block;
+            padding: 15px;
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <h2>Ayursutra Chat</h2>
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="welcome">
+            Welcome, <strong>{{ session['username'] }}</strong>!<br>Select someone to chat with:
+        </div>
+
+        <ul>
+            {% for user in users %}
+                <li><a href="{{ url_for('chat', partner_id=user.id) }}">{{ user.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
