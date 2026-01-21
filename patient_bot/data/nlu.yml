@@ -1,0 +1,1667 @@
+# # Phase-1 
+
+
+
+
+
+
+# version: "3.1"
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+# - intent: user_info
+#   examples: |
+#     - my details
+#     - show my info
+#     - who am I
+#     - give me my profile
+
+
+
+
+
+
+
+
+
+# #  Phase - 2
+
+# # nlu.yml
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hello
+#     - hi
+#     - hey
+#     - good morning
+#     - good evening
+
+# - intent: user_info
+#   examples: |
+#     - show my details
+#     - my information
+#     - user info
+#     - I want to see my info
+#     - tell me about myself
+
+# - intent: show_appointments
+#   examples: |
+#     - show my upcoming appointments
+#     - my schedule
+#     - what are my appointments
+#     - upcoming appointments
+#     - check my appointments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  Phase - 3
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+#     - good evening
+
+# - intent: cancel_appointment
+#   examples: |
+#     - Cancel my appointment
+#     - I want to cancel my latest appointment
+#     - Cancel the scheduled appointment
+#     - Remove my next appointment
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 4
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hello
+#     - hi
+#     - hey
+#     - good morning
+#     - good evening
+
+# - intent: user_info
+#   examples: |
+#     - show my details
+#     - my information
+#     - user info
+#     - I want to see my info
+#     - tell me about myself
+
+# - intent: show_appointments
+#   examples: |
+#     - show my upcoming appointments
+#     - my schedule
+#     - what are my appointments
+#     - upcoming appointments
+#     - check my appointments
+
+
+
+# - intent: cancel_appointment
+#   examples: |
+#     - Cancel my appointment
+#     - I want to cancel my latest appointment
+#     - Cancel the scheduled appointment
+#     - Remove my next appointment
+#     - Cancel my upcoming appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 5 
+# nlu.yml
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hello
+#     - hi
+#     - hey
+#     - good morning
+#     - good evening
+#     - hi there
+#     - greetings
+#     - hey bot
+#     - howdy
+#     - hi bot
+
+# - intent: user_info
+#   examples: |
+#     - show my details
+#     - my information
+#     - user info
+#     - I want to see my info
+#     - tell me about myself
+#     - what do you know about me
+#     - display my profile
+#     - give me my details
+#     - show my account info
+#     - profile information
+
+# - intent: show_appointments
+#   examples: |
+#     - show my upcoming appointments
+#     - my schedule
+#     - what are my appointments
+#     - upcoming appointments
+#     - check my appointments
+#     - list my appointments
+#     - view scheduled appointments
+#     - show me my next appointment
+#     - what appointments do I have
+#     - display my appointments
+#     - all my appointments
+#     - show appointments for today
+#     - show appointments for this week
+
+
+
+# - intent: cancel_appointment
+#   examples: |
+#     - cancel my appointment
+#     - I want to cancel my latest appointment
+#     - cancel the scheduled appointment
+#     - remove my next appointment
+#     - cancel my upcoming appointment
+#     - delete my appointment
+#     - cancel my booking
+#     - I don't want my next appointment
+#     - revoke my upcoming appointment
+#     - cancel appointment for tomorrow
+
+
+
+# - intent: ask_doctors
+#   examples: |
+#     - show me the doctors
+#     - which doctors are available
+#     - list doctors
+#     - tell me about the doctors
+#     - display all doctors
+#     - doctors available today
+#     - who are the doctors
+#     - give me doctor details
+#     - doctors in my area
+#     - available doctors list
+
+# - intent: ask_therapies
+#   examples: |
+#     - show me the therapies
+#     - which therapies are available
+#     - list therapies
+#     - tell me about therapies
+#     - available treatments
+#     - therapy options
+#     - show therapy list
+#     - types of therapies
+#     - therapy sessions available
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# demo
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hello
+#     - hi
+#     - hey
+#     - good morning
+#     - good evening
+
+# - intent: user_info
+#   examples: |
+#     - show my details
+#     - my information
+#     - user info
+#     - I want to see my info
+#     - tell me about myself
+
+# - intent: show_appointments
+#   examples: |
+#     - show my upcoming appointments
+#     - my schedule
+#     - what are my appointments
+#     - upcoming appointments
+#     - check my appointments
+
+
+
+# - intent: cancel_appointment
+#   examples: |
+#     - Cancel my appointment
+#     - I want to cancel my latest appointment
+#     - Cancel the scheduled appointment
+#     - Remove my next appointment
+#     - Cancel my upcoming appointment
+
+# - intent: ask_doctors
+#   examples: |
+#     - show me the doctors
+#     - which doctors are available
+#     - list doctors
+#     - tell me about the doctors
+
+# - intent: ask_therapies
+#   examples: |
+#     - show me the therapies
+#     - which therapies are available
+#     - list therapies
+#     - tell me about therapies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 6
+# nlu.yml
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+#     - Can I book a doctor?
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+
+# - intent: provide_date
+#   examples: |
+#     - 2025-01-22
+#     - Book on [2025-02-10](appointment_date)
+#     - Schedule for [2025-01-25](appointment_date)
+
+# - intent: provide_doctor_id
+#   examples: |
+#     - 1
+#     - 2
+#     - I choose doctor [1](doctor_id)
+#     - Doctor [2](doctor_id)
+
+# - intent: provide_slot_id
+#   examples: |
+#     - 5
+#     - Slot [3](slot_id)
+#     - I choose slot [2](slot_id)
+
+
+
+
+
+
+
+# # nlu.yml
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+#     - Can I book a doctor?
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - 4
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+
+# - intent: provide_date
+#   examples: |
+#     - 2025-01-22
+#     - Book on [2025-02-10](appointment_date)
+#     - Schedule for [2025-01-25](appointment_date)
+
+# - intent: provide_doctor_id
+#   examples: |
+#     - 1
+#     - 2
+#     - I choose doctor [1](doctor_id)
+#     - Doctor [2](doctor_id)
+
+# - intent: provide_slot_id
+#   examples: |
+#     - 1
+#     - 2
+#     - Slot [3](slot_id)
+#     - I choose slot [2](slot_id)
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+#     - Can I book a doctor?
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - 4
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+
+# - intent: provide_doctor_id
+#   examples: |
+#     - 1
+#     - 2
+#     - I choose doctor [1](doctor_id)
+#     - Doctor [2](doctor_id)
+
+# - intent: provide_date
+#   examples: |
+#     - 2025-01-22
+#     - Book on [2025-02-10](appointment_date)
+#     - Schedule for [2025-01-25](appointment_date)
+
+# - intent: provide_slot_id
+#   examples: |
+#     - 1
+#     - 2
+#     - Slot [3](slot_id)
+#     - I choose slot [2](slot_id)
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+#     - Can I book a doctor?
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - [1](therapy_id)
+#     - [2](therapy_id)
+#     - [3](therapy_id)
+#     - [4](therapy_id)
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+#     - I select [3](therapy_id)
+#     - Therapy [4](therapy_id)
+
+
+# - intent: provide_doctor_id
+#   examples: |
+#     - [1](doctor_id)
+#     - [2](doctor_id)
+#     - [3](doctor_id)
+#     - Doctor [1](doctor_id)
+#     - I choose doctor [2](doctor_id)
+#     - Select [3](doctor_id)
+
+
+# - intent: provide_date
+#   examples: |
+#     - [2025-09-15](appointment_date)
+#     - Book on [2025-09-20](appointment_date)
+#     - Schedule for [2025-09-22](appointment_date)
+
+
+# - intent: provide_slot_id
+#   examples: |
+#     - [1](slot_id)
+#     - [2](slot_id)
+#     - [3](slot_id)
+#     - Slot [2](slot_id)
+#     - I choose slot [3](slot_id)
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+#     - Can I book a doctor?
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - [1](therapy_id)
+#     - [2](therapy_id)
+#     - [3](therapy_id)
+#     - [4](therapy_id)
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+
+# - intent: provide_doctor_id
+#   examples: |
+#     - [1](doctor_id)
+#     - [2](doctor_id)
+#     - [3](doctor_id)
+#     - Doctor [1](doctor_id)
+#     - I choose doctor [2](doctor_id)
+
+# - intent: provide_date
+#   examples: |
+#     - [2025-09-15](appointment_date)
+#     - Book on [2025-09-20](appointment_date)
+#     - Schedule for [2025-09-22](appointment_date)
+
+# - intent: provide_slot_id
+#   examples: |
+#     - [1](slot_id)
+#     - [2](slot_id)
+#     - [3](slot_id)
+#     - Slot [2](slot_id)
+#     - I choose slot [3](slot_id)
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - 4
+
+# - intent: provide_doctor_letter
+#   examples: |
+#     - a
+#     - b
+#     - c
+#     - d
+
+# - intent: provide_date
+#   examples: |
+#     - 2025-09-15
+#     - 2025-09-22
+
+# - intent: provide_slot_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+#     - Can I book a doctor?
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+
+# - intent: provide_doctor_letter
+#   examples: |
+#     - a
+#     - b
+#     - c
+#     - Doctor [a](doctor_id)
+#     - I choose doctor [b](doctor_id)
+
+# - intent: provide_date
+#   examples: |
+#     - 2025-09-15
+#     - Book on [2025-09-20](appointment_date)
+#     - Schedule for [2025-09-22](appointment_date)
+
+# - intent: provide_slot_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - Slot [2](slot_id)
+#     - I choose slot [3](slot_id)
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+#     - Can I book a doctor?
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+
+# - intent: provide_doctor_letter
+#   examples: |
+#     - a
+#     - b
+#     - c
+#     - Doctor [a](doctor_id)
+#     - I choose doctor [b](doctor_id)
+
+# - intent: provide_date
+#   examples: |
+#     - 2025-09-15
+#     - Book on [2025-09-20](appointment_date)
+#     - Schedule for [2025-09-22](appointment_date)
+
+# - intent: provide_slot_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - Slot [2](slot_id)
+#     - I choose slot [3](slot_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book a therapy session
+#     - Schedule appointment
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+
+# - intent: provide_doctor_letter
+#   examples: |
+#     - a
+#     - b
+#     - c
+#     - Doctor [a](doctor_letter)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Schedule a therapy
+#     - Book a doctor
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+
+# - intent: provide_doctor_letter
+#   examples: |
+#     - a
+#     - b
+#     - c
+
+# - intent: provide_date
+#   examples: |
+#     - 2025-09-15
+#     - 2025-09-20
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Schedule appointment
+#     - Book a therapy session
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+#     - 4
+#     - My therapy choice is [1](therapy_id)
+#     - I choose therapy [2](therapy_id)
+
+# - intent: provide_doctor_letter
+#   examples: |
+#     - a
+#     - b
+#     - c
+#     - A
+#     - B
+#     - C
+#     - letter a
+#     - letter b
+#     - letter c
+#     - I choose a
+#     - I choose b
+#     - I choose c
+
+# - intent: provide_date
+#   examples: |
+#     - 2025-09-15
+#     - Book on [2025-09-20](appointment_date)
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+
+# - intent: book_appointment
+#   examples: |
+#     - book
+#     - I want to book
+#     - schedule an appointment
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 1
+#     - 2
+#     - 3
+
+# - intent: provide_doctor_letter
+#   examples: |
+#     - a
+#     - b
+#     - c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+#   - intent: greet
+#     examples: |
+#       - hi
+#       - hello
+#       - hey
+
+#   - intent: book_appointment
+#     examples: |
+#       - I want to book an appointment
+#       - Can I schedule a therapy session?
+#       - Book appointment
+
+#   - intent: select_therapy
+#     examples: |
+#       - I choose therapy 201
+#       - Book therapy 202
+#       - Therapy id is 203
+
+#   - intent: select_doctor
+#     examples: |
+#       - I choose doctor 101
+#       - Doctor id 102
+#       - Select doctor 103
+
+#   - intent: provide_date
+#     examples: |
+#       - On 2025-09-15
+#       - 15th September 2025
+#       - date is 2025-09-20
+
+#   - intent: provide_time
+#     examples: |
+#       - at 11:00
+#       - 2 PM
+#       - time is 10 AM
+
+#   - intent: provide_name
+#     examples: |
+#       - My name is Kartik
+#       - The patient is Anjali
+#       - Book under Ramesh
+
+#   - intent: view_appointments
+#     examples: |
+#       - Show my appointments
+#       - List bookings
+#       - View all appointments
+
+
+
+
+
+
+
+
+# version: "3.1"
+# nlu:
+# - intent: book_therapy
+#   examples: |
+#     - I want to book a therapy
+#     - I need a therapy session
+#     - book a therapy for me
+
+# - intent: provide_therapy_id
+#   examples: |
+#     - 201
+#     - 202
+#     - 203
+
+# - intent: provide_patient_name
+#   examples: |
+#     - My name is [kd](patient_name)
+#     - Patient name is [Rohit](patient_name)
+#     - [John](patient_name)
+
+# - intent: provide_date
+#   examples: |
+#     - [2025-09-15](appointment_date)
+#     - [tomorrow](appointment_date)
+#     - [next Monday](appointment_date)
+
+# - intent: provide_time
+#   examples: |
+#     - [3 PM](appointment_time)
+#     - [10:30 AM](appointment_time)
+#     - [5 pm](appointment_time)
+
+# - intent: affirm
+#   examples: |
+#     - yes
+#     - correct
+#     - sure
+
+# - intent: deny
+#   examples: |
+#     - no
+#     - not now
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+#   - intent: greet
+#     examples: |
+#       - hello
+#       - hi
+#       - hey
+#       - good morning
+#       - good evening
+
+#   - intent: goodbye
+#     examples: |
+#       - bye
+#       - goodbye
+#       - see you
+#       - take care
+
+#   - intent: list_therapies
+#     examples: |
+#       - show me therapies
+#       - list therapies
+#       - what therapies do you have
+#       - available treatments
+
+#   - intent: choose_therapy
+#     examples: |
+#       - 1
+#       - 2
+#       - 3
+
+#   - intent: choose_doctor
+#     examples: |
+#       - a
+#       - b
+#       - c
+
+#   - intent: provide_date
+#     examples: |
+#       - 2025-09-12
+#       - 2025-09-15
+
+#   - intent: choose_slot
+#     examples: |
+#       - 1
+#       - 2
+#       - 3
+
+#   - intent: provide_patient_name
+#     examples: |
+#       - Alice
+#       - Bob
+#       - Charlie
+
+#   - intent: feedback
+#     examples: |
+#       - My session was good
+#       - I feel relaxed
+#       - Excellent service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+#   - intent: greet
+#     examples: |
+#       - hello
+#       - hi
+#       - hey
+#       - good morning
+#       - good evening
+#       - hi there
+
+#   - intent: goodbye
+#     examples: |
+#       - goodbye
+#       - bye
+#       - see you later
+#       - talk to you later
+
+#   - intent: book_appointment
+#     examples: |
+#       - I want to book an appointment
+#       - Schedule an appointment
+#       - I need to see a doctor
+#       - Book therapy
+#       - Can I book a slot
+#       - I want to make an appointment
+
+#   - intent: cancel_appointment
+#     examples: |
+#       - Cancel my appointment
+#       - I want to cancel
+#       - Delete my latest appointment
+#       - Cancel my booking
+#       - I need to cancel my appointment
+
+
+
+
+
+# version: "3.1"
+
+# nlu:
+#   - intent: greet
+#     examples: |
+#       - hello
+#       - hi
+#       - hey
+#       - good morning
+#       - good evening
+#       - hi there
+
+#   - intent: goodbye
+#     examples: |
+#       - goodbye
+#       - bye
+#       - see you later
+#       - talk to you later
+
+#   - intent: book_appointment
+#     examples: |
+#       - I want to book an appointment
+#       - Schedule an appointment
+#       - I need to see a doctor
+#       - Book therapy
+#       - Can I book a slot
+#       - I want to make an appointment
+#       - book
+#       - book appointment
+#       - I need to schedule
+
+#   - intent: cancel_appointment
+#     examples: |
+#       - Cancel my appointment
+#       - I want to cancel
+#       - Delete my latest appointment
+#       - Cancel my booking
+#       - I need to cancel my appointment
+
+#   - intent: inform
+#     examples: |
+#       - {"therapy_id": "1"}
+#       - {"doctor_id": "2"}
+#       - {"appointment_date": "2025-09-15"}
+#       - {"slot_id": "3"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# pahse 6a
+
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hi
+#     - hello
+#     - hey
+#     - good morning
+#     - good evening
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book an appointment
+#     - Schedule a session
+#     - I need a therapy session
+#     - Can I book a doctor?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # phase 6b
+
+# version: "3.1"
+
+# nlu:
+# - intent: greet
+#   examples: |
+#     - hello
+#     - hi
+#     - hey
+#     - good morning
+#     - good evening
+#     - hi there
+#     - greetings
+#     - hey bot
+#     - howdy
+#     - hi bot
+
+# - intent: user_info
+#   examples: |
+#     - show my details
+#     - my information
+#     - user info
+#     - I want to see my info
+#     - tell me about myself
+#     - what do you know about me
+#     - display my profile
+#     - give me my details
+#     - show my account info
+#     - profile information
+
+# - intent: show_appointments
+#   examples: |
+#     - show my upcoming appointments
+#     - my schedule
+#     - what are my appointments
+#     - upcoming appointments
+#     - check my appointments
+#     - list my appointments
+#     - view scheduled appointments
+#     - show me my next appointment
+#     - what appointments do I have
+#     - display my appointments
+#     - all my appointments
+#     - show appointments for today
+#     - show appointments for this week
+
+
+
+# - intent: cancel_appointment
+#   examples: |
+#     - cancel my appointment
+#     - I want to cancel my latest appointment
+#     - cancel the scheduled appointment
+#     - remove my next appointment
+#     - cancel my upcoming appointment
+#     - delete my appointment
+#     - cancel my booking
+#     - I don't want my next appointment
+#     - revoke my upcoming appointment
+#     - cancel appointment for tomorrow
+
+
+# - intent: book_appointment
+#   examples: |
+#     - I want to book an appointment
+#     - Book an appointment
+#     - Schedule a session
+#     - book
+#     - Book
+#     schedule an appointment
+#     - I need a therapy session
+#     - Can I book a doctor?
+
+# - intent: ask_doctors
+#   examples: |
+#     - show me the doctors
+#     - which doctors are available
+#     - list doctors
+#     - tell me about the doctors
+#     - display all doctors
+#     - doctors available today
+#     - who are the doctors
+#     - give me doctor details
+#     - doctors in my area
+#     - available doctors list
+
+# - intent: ask_therapies
+#   examples: |
+#     - show me the therapies
+#     - which therapies are available
+#     - list therapies
+#     - tell me about therapies
+#     - available treatments
+#     - therapy options
+#     - show therapy list
+#     - types of therapies
+#     - therapy sessions available
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# phase 7
+
+
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hello
+    - hi
+    - hey
+    - good morning
+    - good evening
+    - hi there
+    - greetings
+    - hey bot
+    - howdy
+    - hi bot
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you
+    - talk to you later
+    - see ya
+    - catch you later
+    - ok bye
+    - bye bot
+    - good night
+
+- intent: thankyou
+  examples: |
+    - thanks
+    - thank you
+    - thx
+    - thanks a lot
+    - thank you so much
+    - thanks bot
+    - appreciate it
+    - many thanks
+    - cheers
+
+- intent: affirm
+  examples: |
+    - yes
+    - yeah
+    - yep
+    - y
+    - correct
+    - exactly
+    - that’s right
+    - sure
+    - of course
+    - absolutely
+    - ok
+    - okay
+
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - nah
+    - not really
+    - don’t want to
+    - that’s wrong
+    - incorrect
+    - I don’t agree
+    - no way
+    - never
+
+- intent: ask_features
+  examples: |
+    - what can you do
+    - features
+    - show me your features
+    - what tasks can you perform
+    - how can you help me
+    - what are your capabilities
+    - what services do you provide
+    - list your features
+    - what options do I have
+    - what are the things you can do
+
+- intent: user_info
+  examples: |
+    - show my details
+    - my information
+    - user info
+    - I want to see my info
+    - tell me about myself
+    - what do you know about me
+    - display my profile
+    - give me my details
+    - show my account info
+    - profile information
+
+- intent: show_appointments
+  examples: |
+    - show my upcoming appointments
+    - my schedule
+    - what are my appointments
+    - upcoming appointments
+    - check my appointments
+    - list my appointments
+    - view scheduled appointments
+    - show me my next appointment
+    - what appointments do I have
+    - display my appointments
+    - all my appointments
+    - show appointments for today
+    - show appointments for this week
+
+- intent: cancel_appointment
+  examples: |
+    - cancel my appointment
+    - I want to cancel my latest appointment
+    - cancel the scheduled appointment
+    - remove my next appointment
+    - cancel my upcoming appointment
+    - delete my appointment
+    - cancel my booking
+    - I don't want my next appointment
+    - revoke my upcoming appointment
+    - cancel appointment for tomorrow
+
+- intent: book_appointment
+  examples: |
+    - I want to book an appointment
+    - Book an appointment
+    - Schedule a session
+    - book
+    - Book
+    - schedule an appointment
+    - I need a therapy session
+    - Can I book a doctor?
+
+- intent: ask_doctors
+  examples: |
+    - show me the doctors
+    - which doctors are available
+    - list doctors
+    - tell me about the doctors
+    - display all doctors
+    - doctors available today
+    - who are the doctors
+    - give me doctor details
+    - doctors in my area
+    - available doctors list
+
+- intent: ask_therapies
+  examples: |
+    - show me the therapies
+    - which therapies are available
+    - list therapies
+    - tell me about therapies
+    - available treatments
+    - therapy options
+    - show therapy list
+    - types of therapies
+    - therapy sessions available

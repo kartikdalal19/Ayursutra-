@@ -1,0 +1,821 @@
+# # Phase - 1
+
+# version: "3.1"
+# stories:
+#   - story: user asks for info
+#     steps:
+#       - intent: user_info
+#       - action: action_user_info
+
+#   - story: user greets
+#     steps:
+#       - intent: greet
+#       - action: utter_greet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # Phase - 2
+
+# # stories.yml
+
+
+# version: "3.1"
+
+# stories:
+
+# # Greeting Story
+# - story: user greets the bot
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# # User Info Story
+# - story: user asks for their info
+#   steps:
+#   - intent: user_info
+#   - action: action_user_info
+
+# # Show Upcoming Appointments Story
+# - story: user wants to see upcoming appointments
+#   steps:
+#   - intent: show_appointments
+#   - action: action_show_appointments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 3
+
+# stories.yml
+
+
+
+# version: "3.1"
+
+# stories:
+# - story: greet user
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# - story: cancel latest appointment
+#   steps:
+#   - intent: cancel_appointment
+#   - action: action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 4
+
+
+# version: "3.1"
+
+# stories:
+
+# # Greeting Story
+# - story: user greets the bot
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# # User Info Story
+# - story: user asks for their info
+#   steps:
+#   - intent: user_info
+#   - action: action_user_info
+
+# # Show Upcoming Appointments Story
+# - story: user wants to see upcoming appointments
+#   steps:
+#   - intent: show_appointments
+#   - action: action_show_appointments
+
+# # Cancel Upcoming Appointments Story
+# - story: cancel latest appointment
+#   steps:
+#   - intent: cancel_appointment
+#   - action: action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 5 
+# stories.yml
+
+# version: "3.1"
+
+# stories:
+
+# # Greeting Story
+# - story: user greets the bot
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# # User Info Story
+# - story: user asks for their info
+#   steps:
+#   - intent: user_info
+#   - action: action_user_info
+
+# # Show Upcoming Appointments Story
+# - story: user wants to see upcoming appointments
+#   steps:
+#   - intent: show_appointments
+#   - action: action_show_appointments
+
+# # Cancel Upcoming Appointments Story
+# - story: cancel latest appointment
+#   steps:
+#   - intent: cancel_appointment
+#   - action: action_cancel_appointment
+
+
+# - story: User asks about doctors
+#   steps:
+#     - intent: ask_doctors
+#     - action: action_ask_doctors
+
+# - story: User asks about therapies
+#   steps:
+#     - intent: ask_therapies
+#     - action: action_ask_therapies
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 6
+# stories.yml
+
+
+# version: "3.1"
+
+# stories:
+
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: utter_ask_date
+#     - intent: provide_date
+#     - action: action_list_doctors
+#     - intent: provide_doctor_id
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # stories.yml
+
+# version: "3.1"
+
+# stories:
+
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: utter_ask_date
+#     - intent: provide_date
+#     - action: action_list_doctors
+#     - intent: provide_doctor_id
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+# version: "3.1"
+
+# stories:
+
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_id
+#     - action: utter_ask_date
+#     - intent: provide_date
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_id
+#     - action: action_ask_date        # ✅ updated here
+#     - intent: provide_date
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_id
+#     - action: action_confirm_doctor
+#     - action: action_ask_date
+#     - intent: provide_date
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_id
+#     - action: action_set_doctor
+#     - intent: provide_date
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_letter
+#     - action: action_list_doctors
+#     - intent: provide_date
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_letter
+#     - action: action_list_doctors
+#     - intent: provide_date
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_letter
+#     - action: action_list_doctors
+#     - intent: provide_date
+#     - action: action_list_slots
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+# - story: book therapy happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_letter
+#     - action: action_set_doctor
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_letter
+#     - action: action_set_doctor
+#     - intent: provide_date
+#     - action: action_ask_date
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+# - story: book appointment happy path
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_letter
+#     - action: action_set_doctor
+#     - intent: provide_date
+#     - action: action_ask_date
+
+# version: "3.1"
+
+# stories:
+# - story: therapy and doctor flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+#     - intent: provide_doctor_letter
+#     - action: action_set_doctor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+#   - story: Happy path appointment booking
+#     steps:
+#       - intent: book_appointment
+#       - action: action_show_therapies
+#       - action: utter_ask_therapy_id
+#       - intent: select_therapy
+#         entities:
+#           - therapy_id: "201"
+#       - slot_was_set:
+#           - therapy_id: "201"
+#       - action: action_suggest_doctor
+#       - action: utter_ask_doctor_id
+#       - intent: select_doctor
+#         entities:
+#           - doctor_id: "101"
+#       - slot_was_set:
+#           - doctor_id: "101"
+#       - action: utter_ask_appointment_date
+#       - intent: provide_date
+#         entities:
+#           - appointment_date: "2025-09-15"
+#       - slot_was_set:
+#           - appointment_date: "2025-09-15"
+#       - action: utter_ask_appointment_time
+#       - intent: provide_time
+#         entities:
+#           - appointment_time: "11:00"
+#       - slot_was_set:
+#           - appointment_time: "11:00"
+#       - action: utter_ask_patient_name
+#       - intent: provide_name
+#         entities:
+#           - patient_name: "Kartik"
+#       - slot_was_set:
+#           - patient_name: "Kartik"
+#       - action: action_book_appointment
+
+
+
+
+
+
+
+# version: "3.1"
+# stories:
+# - story: happy therapy booking
+#   steps:
+#   - intent: book_therapy
+#   - action: utter_ask_therapy
+#   - intent: provide_therapy_id
+#   - slot_was_set:
+#       - therapy_id: "201"
+#   - action: utter_ask_patient_name
+#   - intent: provide_patient_name
+#   - slot_was_set:
+#       - patient_name: "kd"
+#   - action: utter_ask_date
+#   - intent: provide_date
+#   - slot_was_set:
+#       - appointment_date: "2025-09-15"
+#   - action: utter_ask_time
+#   - intent: provide_time
+#   - slot_was_set:
+#       - appointment_time: "3 PM"
+#   - action: action_suggest_doctor
+#   - action: utter_confirm_booking
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+#   - story: book appointment
+#     steps:
+#       - intent: list_therapies
+#       - action: action_list_therapies
+#       - intent: choose_therapy
+#       - action: action_list_doctors
+#       - intent: choose_doctor
+#       - action: action_ask_date
+#       - intent: provide_date
+#       - action: action_list_slots
+#       - intent: choose_slot
+#       - action: utter_ask_patient_name
+#       - intent: provide_patient_name
+#       - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# stories:
+#   - story: book appointment happy path
+#     steps:
+#       - intent: greet
+#       - action: utter_greet
+#       - intent: book_appointment
+#       - action: appointment_form
+#       - active_loop: appointment_form
+#       - slot_was_set:
+#           - therapy_id: "1"
+#           - doctor_id: "2"
+#           - appointment_date: "2025-09-15"
+#           - slot_id: "3"
+#       - active_loop: null
+#       - action: action_book_appointment
+
+#   - story: cancel latest appointment
+#     steps:
+#       - intent: greet
+#       - action: utter_greet
+#       - intent: cancel_appointment
+#       - action: action_cancel_appointment
+
+
+
+
+
+
+
+# version: "3.1"
+# stories:
+
+# - story: book appointment happy path
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: book_appointment
+#     - action: appointment_form
+#     - active_loop: appointment_form
+#     - slot_was_set:
+#         - therapy_id: "1"
+#     - slot_was_set:
+#         - doctor_id: "2"
+#     - slot_was_set:
+#         - appointment_date: "2025-09-15"
+#     - slot_was_set:
+#         - slot_id: "3"
+#     - action: appointment_form
+#     - active_loop: null
+
+# - story: cancel appointment
+#   steps:
+#     - intent: cancel_appointment
+#     - action: action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# phase 6a
+
+
+# version: "3.1"
+
+# stories:
+# - story: greet and book
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+
+# - story: user wants to book appointment
+#   steps:
+#   - intent: book_appointment
+#   - action: action_trigger_popup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# phase 6b / 7
+
+
+version: "3.1"
+
+stories:
+
+# Greeting Story
+- story: user greets the bot
+  steps:
+  - intent: greet
+  - action: action_greet
+
+# User Info Story
+- story: user asks for their info
+  steps:
+  - intent: user_info
+  - action: action_user_info
+
+# Show Upcoming Appointments Story
+- story: user wants to see upcoming appointments
+  steps:
+  - intent: show_appointments
+  - action: action_show_appointments
+
+# Cancel Upcoming Appointments Story
+- story: cancel latest appointment
+  steps:
+  - intent: cancel_appointment
+  - action: action_cancel_appointment
+
+
+- story: User asks about doctors
+  steps:
+    - intent: ask_doctors
+    - action: action_ask_doctors
+
+- story: User asks about therapies
+  steps:
+    - intent: ask_therapies
+    - action: action_ask_therapies
+
+- story: user wants to book appointment
+  steps:
+  - intent: book_appointment
+  - action: action_trigger_popup

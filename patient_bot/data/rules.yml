@@ -1,0 +1,1138 @@
+# # Phase - 1
+
+# version: "3.1"
+# rules:
+#   - rule: Show user info
+#     steps:
+#       - intent: user_info
+#       - action: action_user_info
+
+#   - rule: Greet the user
+#     steps:
+#       - intent: greet
+#       - action: utter_greet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # Phase- 2
+
+# # rules.yml
+
+
+
+# version: "3.1"
+
+# rules:
+# - rule: Greet the user
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# - rule: Show user info
+#   steps:
+#   - intent: user_info
+#   - action: action_user_info
+
+# - rule: Show upcoming appointments
+#   steps:
+#   - intent: show_appointments
+#   - action: action_show_appointments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 3
+
+# rules.yml
+
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Respond to greeting
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# - rule: Cancel latest appointment
+#   steps:
+#   - intent: cancel_appointment
+#   - action: action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 4 
+
+
+# version: "3.1"
+
+# rules:
+# - rule: Greet the user
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# - rule: Show user info
+#   steps:
+#   - intent: user_info
+#   - action: action_user_info
+
+# - rule: Show upcoming appointments
+#   steps:
+#   - intent: show_appointments
+#   - action: action_show_appointments
+
+# - rule: Cancel latest appointment
+#   steps:
+#   - intent: cancel_appointment
+#   - action: action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 5 
+# rules.yml
+
+    
+# version: "3.1"
+
+# rules:
+# - rule: Greet the user
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# - rule: Show user info
+#   steps:
+#   - intent: user_info
+#   - action: action_user_info
+
+# - rule: Show upcoming appointments
+#   steps:
+#   - intent: show_appointments
+#   - action: action_show_appointments
+
+# - rule: Cancel latest appointment
+#   steps:
+#   - intent: cancel_appointment
+#   - action: action_cancel_appointment
+
+
+# - rule: Show doctors list
+#   steps:
+#     - intent: ask_doctors
+#     - action: action_ask_doctors
+
+# - rule: Show therapies list
+#   steps:
+#     - intent: ask_therapies
+#     - action: action_ask_therapies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 6
+# rules.yml
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - slot_was_set:
+#         - therapy_id: true
+#     - action: utter_ask_date
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - slot_was_set:
+#         - appointment_date: true
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_id
+#     - slot_was_set:
+#         - doctor_id: true
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - slot_was_set:
+#         - slot_id: true
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+# rules.yml
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - slot_was_set:
+#         - therapy_id: true
+#     - action: utter_ask_date
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - slot_was_set:
+#         - appointment_date: true
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_id
+#     - slot_was_set:
+#         - doctor_id: true
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - slot_was_set:
+#         - slot_id: true
+#     - action: action_book_appointment
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - slot_was_set:
+#         - therapy_id: true
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_id
+#     - slot_was_set:
+#         - doctor_id: true
+#     - action: utter_ask_date
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - slot_was_set:
+#         - appointment_date: true
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - slot_was_set:
+#         - slot_id: true
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # rules.yml
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - slot_was_set:
+#         - therapy_id: true
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_id
+#     - slot_was_set:
+#         - doctor_id: true
+#     - action: action_confirm_doctor   # ✅ confirm choice
+#     - action: action_ask_date
+
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - slot_was_set:
+#         - appointment_date: true
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - slot_was_set:
+#         - slot_id: true
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - slot_was_set:
+#         - therapy_id: true
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_id
+#     - slot_was_set:
+#         - doctor_id: true
+#     - action: action_confirm_doctor
+#     - action: action_ask_date
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - slot_was_set:
+#         - appointment_date: true
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - slot_was_set:
+#         - slot_id: true
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_id
+#     - action: action_set_doctor
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_letter
+#     - action: action_list_doctors
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_letter
+#     - action: action_list_doctors
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_letter
+#     - action: action_list_doctors
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - action: action_list_slots
+
+# - rule: User provides slot
+#   steps:
+#     - intent: provide_slot_id
+#     - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start therapy booking
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_letter
+#     - action: action_set_doctor
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_letter
+#     - action: action_set_doctor
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - action: action_ask_date
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_letter
+#     - action: action_set_doctor
+
+# - rule: User provides date
+#   steps:
+#     - intent: provide_date
+#     - action: action_ask_date
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+# - rule: Start booking flow
+#   steps:
+#     - intent: book_appointment
+#     - action: action_list_therapies
+
+# - rule: User provides therapy
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: action_list_doctors
+
+# - rule: User provides doctor
+#   steps:
+#     - intent: provide_doctor_letter
+#     - action: action_set_doctor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+#   - rule: Start appointment booking
+#     steps:
+#       - intent: book_appointment
+#       - action: action_show_therapies
+#       - action: utter_ask_therapy_id
+
+#   - rule: Select therapy
+#     steps:
+#       - intent: select_therapy
+#       - action: action_suggest_doctor
+#       - action: utter_ask_doctor_id
+
+#   - rule: Select doctor
+#     steps:
+#       - intent: select_doctor
+#       - action: utter_ask_appointment_date
+
+#   - rule: Provide date
+#     steps:
+#       - intent: provide_date
+#       - action: utter_ask_appointment_time
+
+#   - rule: Provide time
+#     steps:
+#       - intent: provide_time
+#       - action: utter_ask_patient_name
+
+#   - rule: Provide patient name and confirm booking
+#     steps:
+#       - intent: provide_name
+#       - action: action_book_appointment
+
+#   - rule: View appointments
+#     steps:
+#       - intent: view_appointments
+#       - action: action_view_appointments
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+# rules:
+# - rule: start therapy booking
+#   steps:
+#     - intent: book_therapy
+#     - action: utter_ask_therapy
+
+# - rule: ask patient name
+#   steps:
+#     - intent: provide_therapy_id
+#     - action: utter_ask_patient_name
+
+# - rule: ask date
+#   steps:
+#     - intent: provide_patient_name
+#     - action: utter_ask_date
+
+# - rule: ask time
+#   steps:
+#     - intent: provide_date
+#     - action: utter_ask_time
+
+# - rule: suggest doctor
+#   steps:
+#     - intent: provide_time
+#     - action: action_suggest_doctor
+#     - action: utter_confirm_booking
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+#   - rule: Book appointment flow
+#     steps:
+#       - intent: list_therapies
+#       - action: action_list_therapies
+#       - intent: choose_therapy
+#       - action: action_list_doctors
+#       - intent: choose_doctor
+#       - action: action_ask_date
+#       - intent: provide_date
+#       - action: action_list_slots
+#       - intent: choose_slot
+#       - action: utter_ask_patient_name
+#       - intent: provide_patient_name
+#       - action: action_book_appointment
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# rules:
+#   - rule: Submit appointment form
+#     steps:
+#       - intent: book_appointment
+#       - action: appointment_form
+#       - active_loop: appointment_form
+#       - action: action_book_appointment
+#       - active_loop: null
+
+#   - rule: Handle greeting
+#     steps:
+#       - intent: greet
+#       - action: utter_greet
+
+#   - rule: Cancel appointment
+#     steps:
+#       - intent: cancel_appointment
+#       - action: action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+# rules:
+
+# - rule: Greet user
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+
+# - rule: Say goodbye
+#   steps:
+#     - intent: goodbye
+#     - action: utter_goodbye
+
+# - rule: Book appointment
+#   steps:
+#     - intent: book_appointment
+#     - action: appointment_form
+#     - active_loop: appointment_form
+
+# - rule: Submit appointment form
+#   condition:
+#     - active_loop: appointment_form
+#   steps:
+#     - action: appointment_form
+#     - active_loop: null
+
+# - rule: Cancel appointment
+#   steps:
+#     - intent: cancel_appointment
+#     - action: action_cancel_appointment
+
+
+
+
+
+
+
+
+# version: "3.1"
+# rules:
+
+# - rule: Greet user
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+
+# - rule: Say goodbye
+#   steps:
+#     - intent: goodbye
+#     - action: utter_goodbye
+
+# - rule: Start booking appointment
+#   steps:
+#     - intent: book_appointment
+#     - action: appointment_form
+#     - active_loop: appointment_form
+
+# - rule: Submit appointment form
+#   condition:
+#     - active_loop: appointment_form
+#   steps:
+#     - action: appointment_form
+#     - active_loop: null
+
+# - rule: Cancel appointment
+#   steps:
+#     - intent: cancel_appointment
+#     - action: action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# phase 6a
+
+# version: "3.1"
+
+# rules:
+# - rule: Show popup on appointment request
+#   steps:
+#   - intent: book_appointment
+#   - action: action_trigger_popup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# phase 6b
+
+# version: "3.1"
+
+# rules:
+# - rule: Greet the user
+#   steps:
+#   - intent: greet
+#   - action: action_greet
+
+# - rule: Show user info
+#   steps:
+#   - intent: user_info
+#   - action: action_user_info
+
+# - rule: Show upcoming appointments
+#   steps:
+#   - intent: show_appointments
+#   - action: action_show_appointments
+
+# - rule: Cancel latest appointment
+#   steps:
+#   - intent: cancel_appointment
+#   - action: action_cancel_appointment
+
+
+# - rule: Show doctors list
+#   steps:
+#     - intent: ask_doctors
+#     - action: action_ask_doctors
+
+# - rule: Show therapies list
+#   steps:
+#     - intent: ask_therapies
+#     - action: action_ask_therapies
+
+# - rule: Show popup on appointment request
+#   steps:
+#   - intent: book_appointment
+#   - action: action_trigger_popup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # phase 7
+
+
+
+ 
+version: "3.1"
+
+rules:
+- rule: Greet the user
+  steps:
+  - intent: greet
+  - action: action_greet
+
+
+- rule: Say goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+- rule: Say thank you
+  steps:
+    - intent: thankyou
+    - action: utter_thankyou
+
+- rule: Affirm
+  steps:
+    - intent: affirm
+    - action: utter_affirm
+
+- rule: Deny
+  steps:
+    - intent: deny
+    - action: utter_deny
+
+- rule: Show features
+  steps:
+    - intent: ask_features
+    - action: utter_features
+
+- rule: Show user info
+  steps:
+  - intent: user_info
+  - action: action_user_info
+
+- rule: Show upcoming appointments
+  steps:
+  - intent: show_appointments
+  - action: action_show_appointments
+
+- rule: Cancel latest appointment
+  steps:
+  - intent: cancel_appointment
+  - action: action_cancel_appointment
+
+
+- rule: Show doctors list
+  steps:
+    - intent: ask_doctors
+    - action: action_ask_doctors
+
+- rule: Show therapies list
+  steps:
+    - intent: ask_therapies
+    - action: action_ask_therapies
+
+- rule: Show popup on appointment request
+  steps:
+  - intent: book_appointment
+  - action: action_trigger_popup
+
+- rule: Default fallback
+  steps:
+    - intent: nlu_fallback
+    - action: utter_default
+
+
+
+

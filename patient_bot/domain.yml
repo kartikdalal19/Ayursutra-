@@ -1,0 +1,1820 @@
+# # phase - 1
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - user_info
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! How can I help you today?"
+
+# actions:
+#   - action_user_info
+
+
+
+
+
+
+
+
+
+
+
+# # phase-2
+
+# #  domain.yml
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - user_info
+#   - show_appointments
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! Welcome to Ayursutra. How can I help you today?"
+
+#   utter_default:
+#     - text: "I'm sorry, I didn't understand that."
+
+# actions:
+#   - action_greet
+#   - action_user_info
+#   - action_show_appointments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 3
+
+#  domain.yml
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - cancel_appointment
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! Welcome to Ayursutra. How can I help you today?"
+#   utter_cancel_success:
+#     - text: "Your latest appointment has been cancelled."
+#   utter_cancel_fail:
+#     - text: "You have no scheduled appointments to cancel."
+
+# actions:
+#   - action_greet
+#   - action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 4 
+
+
+# version: "3.1"
+
+
+# intents:
+#   - greet
+#   - user_info
+#   - show_appointments
+#   - cancel_appointment
+
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! Welcome to Ayursutra. How can I help you today?"
+
+#   utter_default:
+#     - text: "I'm sorry, I didn't understand that."
+
+#   utter_cancel_success:
+#     - text: "Your latest appointment has been cancelled."
+
+#   utter_cancel_fail:
+#     - text: "You have no scheduled appointments to cancel."
+
+# actions:
+#   - action_greet
+#   - action_user_info
+#   - action_show_appointments
+#   - action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 5 
+
+
+# intents:
+#   - greet
+#   - user_info
+#   - show_appointments
+#   - cancel_appointment
+#   - ask_doctors
+#   - ask_therapies
+
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! Welcome to Ayursutra. How can I help you today?"
+
+#   utter_default:
+#     - text: "I'm sorry, I didn't understand that."
+
+#   utter_cancel_success:
+#     - text: "Your latest appointment has been cancelled."
+
+#   utter_cancel_fail:
+#     - text: "You have no scheduled appointments to cancel."
+
+# actions:
+#   - action_greet
+#   - action_user_info
+#   - action_show_appointments
+#   - action_cancel_appointment
+#   - action_ask_doctors
+#   - action_ask_therapies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phase - 6
+
+
+# domain.py 
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_date
+#   - provide_doctor_id
+#   - provide_slot_id
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - appointment_date
+#   - doctor_id
+#   - slot_id
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: therapy_id
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: appointment_date
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: doctor_id
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: slot_id
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_confirm_booking:
+#     - text: "Your appointment has been booked successfully! ✅"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+# #  domain.yml
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_date
+#   - provide_doctor_id
+#   - provide_slot_id
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - appointment_date
+#   - doctor_id
+#   - slot_id
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_confirm_booking:
+#     - text: "Your appointment has been booked successfully! ✅"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+
+
+
+
+# # domain.yml
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_date
+#   - provide_doctor_id
+#   - provide_slot_id
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - appointment_date
+#   - doctor_id
+#   - slot_id
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   requested_slot:
+#    type: text
+#    influence_conversation: false
+#    mappings:
+#     - type: from_text
+
+
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_confirm_booking:
+#     - text: "Your appointment has been booked successfully! ✅"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_confirm_doctor    # ✅ add this
+#   - action_ask_date
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_id
+#   - provide_date
+#   - provide_slot_id
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   requested_slot:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "👉 Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_confirm_booking:
+#     - text: "✅ Your appointment has been booked successfully!"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_set_doctor
+#   - action_ask_date
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_id
+#   - provide_date
+#   - provide_slot_id
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   requested_slot:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "👉 Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_confirm_booking:
+#     - text: "✅ Your appointment has been booked successfully!"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_set_doctor
+#   - action_ask_date
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_letter
+#   - provide_date
+#   - provide_slot_id
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_ask_date
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_letter
+#   - provide_date
+#   - provide_slot_id
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   requested_slot:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "👉 Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_confirm_booking:
+#     - text: "✅ Your appointment has been booked successfully!"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_ask_date
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_letter
+#   - provide_date
+#   - provide_slot_id
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   requested_slot:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "👉 Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_confirm_booking:
+#     - text: "✅ Your appointment has been booked successfully!"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_ask_date
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_letter
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - doctor_letter
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_letter:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_letter_map:
+#     type: any
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+#   requested_slot:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book a therapy. Would you like to proceed?"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_set_doctor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_letter
+#   - provide_date
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - doctor_letter
+#   - appointment_date
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_letter:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_letter_map:
+#     type: any
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   requested_slot:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book a therapy. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "👉 Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_invalid_date:
+#     - text: "⚠️ Invalid date format. Please use YYYY-MM-DD."
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_set_doctor
+#   - action_ask_date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_letter
+#   - provide_date
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - doctor_letter
+#   - doctor_id
+#   - appointment_date
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_letter_map:
+#     type: any
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+#   requested_slot:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_date:
+#     - text: "👉 Please provide the date (YYYY-MM-DD) for your appointment."
+
+#   utter_confirm_booking:
+#     - text: "✅ Your appointment has been booked successfully!"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_set_doctor
+  
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - provide_therapy_id
+#   - provide_doctor_letter
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_text
+
+#   doctor_letter_map:
+#     type: any
+#     influence_conversation: false
+
+#   requested_slot:
+#     type: text
+#     influence_conversation: false
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! I can help you book an appointment. Would you like to proceed?"
+
+#   utter_ask_therapy:
+#     - text: "Here are the available therapies:\n1. Abhyanga (₹1200.00)\n2. Shirodhara (₹1500.00)\n3. Panchakarma Detox (₹3000.00)\n\n👉 Please type the therapy number to proceed."
+
+#   utter_ask_doctor:
+#     - text: "Available doctors:\n{doctor_options}\n\n👉 Please type the letter corresponding to the doctor."
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_set_doctor
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+#   - select_therapy
+#   - select_doctor
+#   - provide_date
+#   - provide_time
+#   - provide_name
+#   - view_appointments
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - appointment_time
+#   - patient_name
+
+# slots:
+#   patient_name:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: therapy_id
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: doctor_id
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: appointment_date
+#       - type: from_text
+
+#   appointment_time:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: appointment_time
+#       - type: from_text
+
+
+# responses:
+#   utter_greet:
+#     - text: "Hi! 👋 How can I help you today?"
+#   utter_ask_therapy_id:
+#     - text: "Please enter the therapy ID you want to book."
+#   utter_ask_doctor_id:
+#     - text: "Please enter the doctor ID you prefer."
+#   utter_ask_appointment_date:
+#     - text: "On which date would you like the appointment? (e.g., 2025-09-15)"
+#   utter_ask_appointment_time:
+#     - text: "What time would you prefer for your appointment?"
+#   utter_ask_patient_name:
+#     - text: "May I have the patient's name please?"
+
+# actions:
+#   - action_show_therapies
+#   - action_suggest_doctor
+#   - action_book_appointment
+#   - action_view_appointments
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - book_therapy
+#   - provide_therapy_id
+#   - provide_patient_name
+#   - provide_date
+#   - provide_time
+#   - affirm
+#   - deny
+
+# entities:
+#   - therapy_id
+#   - patient_name
+#   - appointment_date
+#   - appointment_time
+#   - doctor_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: therapy_id
+#       - type: from_text
+
+#   patient_name:
+#     type: text
+#     influence_conversation: false
+#     mappings:
+#       - type: from_text
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: doctor_id
+#       - type: from_text
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: appointment_date
+#       - type: from_text
+
+#   appointment_time:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: appointment_time
+#       - type: from_text
+
+# responses:
+#   utter_ask_therapy:
+#     - text: |
+#         💆 Available Therapies:
+#         ➡️ 201: Shirodhara - Oil treatment for stress relief
+#         ➡️ 202: Abhyanga - Full body massage with warm oil
+#         ➡️ 203: Basti - Detox therapy using herbal decoctions
+#         Please enter the therapy ID you want to book.
+
+#   utter_ask_patient_name:
+#     - text: "May I have the patient's name please?"
+
+#   utter_ask_date:
+#     - text: "Please provide the appointment date (e.g., 2025-09-15)."
+
+#   utter_ask_time:
+#     - text: "Please provide your preferred appointment time (e.g., 3 PM)."
+
+#   utter_confirm_booking:
+#     - text: |
+#         ✅ Appointment Confirmed!
+#         Patient: {patient_name}
+#         Therapy: {therapy_id}
+#         Doctor: {doctor_id}
+#         Date: {appointment_date}
+#         Time: {appointment_time}
+
+# actions:
+#   - action_suggest_doctor
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - goodbye
+#   - list_therapies
+#   - choose_therapy
+#   - choose_doctor
+#   - provide_date
+#   - choose_slot
+#   - book_appointment
+#   - provide_patient_name
+#   - feedback
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+#   - patient_name
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: false
+#   doctor_id:
+#     type: text
+#     influence_conversation: false
+#   appointment_date:
+#     type: text
+#     influence_conversation: false
+#   slot_id:
+#     type: text
+#     influence_conversation: false
+#   patient_name:
+#     type: text
+#     influence_conversation: false
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! Welcome to Ayursutra. How can I help you today?"
+#   utter_goodbye:
+#     - text: "Goodbye! Take care."
+#   utter_ask_patient_name:
+#     - text: "Please provide your full name for the appointment."
+#   utter_confirm_booking:
+#     - text: "Your appointment has been successfully booked! ✅"
+#   utter_ask_feedback:
+#     - text: "Please provide your feedback for the session."
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_ask_date
+#   - action_list_slots
+#   - action_book_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - goodbye
+#   - book_appointment
+#   - cancel_appointment
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     mappings:
+#       - type: from_text
+#   doctor_id:
+#     type: text
+#     mappings:
+#       - type: from_text
+#   appointment_date:
+#     type: text
+#     mappings:
+#       - type: from_text
+#   slot_id:
+#     type: text
+#     mappings:
+#       - type: from_text
+
+# forms:
+#   appointment_form:
+#     required_slots:
+#       - therapy_id
+#       - doctor_id
+#       - appointment_date
+#       - slot_id
+
+# responses:
+#   utter_ask_therapy_id:
+#     - text: "Please select therapy by ID:"
+#   utter_ask_doctor_id:
+#     - text: "Please select doctor by ID:"
+#   utter_ask_appointment_date:
+#     - text: "Please provide appointment date (YYYY-MM-DD):"
+#   utter_ask_slot_id:
+#     - text: "Please choose a slot ID:"
+#   utter_greet:
+#     - text: "Hello! How can I help you today?"
+#   utter_goodbye:
+#     - text: "Goodbye!"
+# actions:
+#   - action_book_appointment
+#   - action_cancel_appointment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - goodbye
+#   - affirm
+#   - deny
+#   - book_appointment
+#   - cancel_appointment
+#   - inform
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+# forms:
+#   appointment_form:
+#     required_slots:
+#       - therapy_id
+#       - doctor_id
+#       - appointment_date
+#       - slot_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! How can I help you today?"
+
+#   utter_goodbye:
+#     - text: "Goodbye! Take care."
+
+#   utter_ask_therapy_id:
+#     - text: "Which therapy would you like?"
+
+#   utter_ask_doctor_id:
+#     - text: "Which doctor would you prefer?"
+
+#   utter_ask_appointment_date:
+#     - text: "Which date do you prefer?"
+
+#   utter_ask_slot_id:
+#     - text: "Which time slot works for you?"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_list_dates
+#   - action_list_slots
+#   - action_cancel_appointment
+#   - appointment_form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - goodbye
+#   - affirm
+#   - deny
+#   - book_appointment
+#   - cancel_appointment
+#   - inform
+
+# entities:
+#   - therapy_id
+#   - doctor_id
+#   - appointment_date
+#   - slot_id
+
+# slots:
+#   therapy_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: therapy_id
+
+#   doctor_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: doctor_id
+
+#   appointment_date:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: appointment_date
+
+#   slot_id:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: slot_id
+
+# forms:
+#   appointment_form:
+#     required_slots:
+#       - therapy_id
+#       - doctor_id
+#       - appointment_date
+#       - slot_id
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! How can I help you today?"
+
+#   utter_goodbye:
+#     - text: "Goodbye! Take care."
+
+#   utter_ask_therapy_id:
+#     - text: "Which therapy would you like?"
+
+#   utter_ask_doctor_id:
+#     - text: "Which doctor would you prefer?"
+
+#   utter_ask_appointment_date:
+#     - text: "Which date do you prefer?"
+
+#   utter_ask_slot_id:
+#     - text: "Which time slot works for you?"
+
+# actions:
+#   - action_list_therapies
+#   - action_list_doctors
+#   - action_list_dates
+#   - action_list_slots
+#   - action_cancel_appointment
+#   - appointment_form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# pahse 6a
+
+# version: "3.1"
+
+# intents:
+#   - greet
+#   - book_appointment
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! How can I help you today?"
+
+#   utter_book_appointment:
+#     - text: "Sure! Please use the booking popup to book your appointment."
+
+# actions:
+#   - action_trigger_popup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# phase 6b
+
+
+
+# intents:
+#   - greet
+#   - user_info
+#   - show_appointments
+#   - cancel_appointment
+#   - ask_doctors
+#   - ask_therapies
+#   - book_appointment
+
+
+# responses:
+#   utter_greet:
+#     - text: "Hello! Welcome to Ayursutra. How can I help you today?"
+
+#   utter_default:
+#     - text: "I'm sorry, I didn't understand that."
+
+#   utter_cancel_success:
+#     - text: "Your latest appointment has been cancelled."
+
+#   utter_cancel_fail:
+#     - text: "You have no scheduled appointments to cancel."
+    
+#   utter_book_appointment:
+#     - text: "Sure! Please use the booking popup to book your appointment."
+
+# actions:
+#   - action_greet
+#   - action_user_info
+#   - action_show_appointments
+#   - action_cancel_appointment
+#   - action_ask_doctors
+#   - action_ask_therapies
+#   - action_trigger_popup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# phase 7
+
+
+
+
+
+intents:
+  - greet
+  - goodbye
+  - thankyou
+  - affirm
+  - deny
+  - ask_features
+  - nlu_fallback
+  - user_info
+  - show_appointments
+  - cancel_appointment
+  - ask_doctors
+  - ask_therapies
+  - book_appointment
+
+
+responses:
+  utter_greet:
+    - text: "Hello! Welcome to Ayursutra. How can I help you today?"
+  utter_goodbye:
+    - text: "👋 Goodbye! Take care and have a great day."
+
+  utter_thankyou:
+    - text: "😊 You're welcome! Happy to help."
+
+  utter_affirm:
+    - text: "👍 Great!"
+
+  utter_deny:
+    - text: "❌ Okay, no problem."
+
+  utter_features:
+    - text: |
+        🤖 I can help you with:
+        • 📅 Book an appointment  
+        • 🔍 Show or cancel your appointments  
+        • 👤 Show your profile info  
+        • 👨‍⚕️ Show available doctors  
+        • 💆 Show available therapies  
+        • ℹ️ General guidance about Ayursutra services  
+
+  utter_default:
+    - text: "😅 Sorry, I didn’t get that. Please try again or ask *what can you do*."
+
+  utter_cancel_success:
+    - text: "Your latest appointment has been cancelled."
+
+  utter_cancel_fail:
+    - text: "You have no scheduled appointments to cancel."
+    
+  utter_book_appointment:
+    - text: "Sure! Please use the booking popup to book your appointment."
+
+actions:
+  - action_greet
+  - action_user_info
+  - action_show_appointments
+  - action_cancel_appointment
+  - action_ask_doctors
+  - action_ask_therapies
+  - action_trigger_popup
