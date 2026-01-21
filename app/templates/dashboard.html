@@ -1,0 +1,781 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ patient_name }}!</h2>
+<a href="{{ url_for('logout') }}">Logout</a>
+
+<div id="chat-container">
+    <div id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+async function sendMessage() {
+    const userInput = document.getElementById('user-input').value;
+    if (!userInput) return;
+
+    // Show user message
+    const chatBox = document.getElementById('chat-box');
+    chatBox.innerHTML += `<p><b>You:</b> ${userInput}</p>`;
+
+    // Send message to Flask endpoint
+    const response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userInput })
+    });
+
+    const data = await response.json();
+    chatBox.innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
+
+    document.getElementById('user-input').value = '';
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        #chatbox {
+            width: 90vw;
+            height: 60vh;
+            border: 1px solid #ccc;
+            overflow-y: auto;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #user-input {
+            width:90vw;
+            padding: 5px;
+        }
+        .user-msg { color: blue; }
+        .bot-msg { color: green; }
+    </style>
+</head>
+<body>
+    <h2>Welcome, {{ patient_name }}!</h2>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <div id="chatbox"></div>
+    <input type="text" id="user-input" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById("user-input");
+            const msg = input.value;
+            if (!msg) return;
+
+            const chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += `<div class="user-msg">You: ${msg}</div>`;
+            input.value = "";
+
+            const response = await fetch("/send_message", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: msg })
+            });
+
+            const data = await response.json();
+            data.forEach(resp => {
+                chatbox.innerHTML += `<div class="bot-msg">Bot: ${resp.text}</div>`;
+            });
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ayursutra Chat - Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        #chatbox {
+            width: 90vw;
+            height: 65vh;
+            border: 1px solid #ccc;
+            background: #fff;
+            overflow-y: auto;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #user-input {
+            width: 75vw;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 16px;
+            margin-left: 5px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        /* Chat bubbles */
+        .msg-card {
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .user-msg {
+            background: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot-msg {
+            background: #e9f5ee;
+            color: black;
+            align-self: flex-start;
+        }
+        .bot-name {
+            font-weight: bold;
+            color: #2d572c;
+            margin-bottom: 5px;
+        }
+        /* Special formatting for lists */
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .info-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .info-card h4 {
+            margin: 0 0 5px 0;
+            color: #2d572c;
+        }
+        .info-card p {
+            margin: 3px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome, {{ patient_name }}!</h2>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <div id="chatbox"></div>
+    <div>
+        <input type="text" id="user-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById("user-input");
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const chatbox = document.getElementById("chatbox");
+
+            // User card
+            const userCard = document.createElement("div");
+            userCard.classList.add("msg-card", "user-msg");
+            userCard.textContent = "You: " + msg;
+            chatbox.appendChild(userCard);
+
+            input.value = "";
+
+            // Fetch bot response
+            const response = await fetch("/send_message", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: msg })
+            });
+
+            const data = await response.json();
+            const combined = data.map(resp => resp.text).join("\n\n");
+
+            // Bot card
+            const botContainer = document.createElement("div");
+            botContainer.classList.add("msg-card", "bot-msg");
+
+            const botName = document.createElement("div");
+            botName.classList.add("bot-name");
+            botName.textContent = "James :";
+            botContainer.appendChild(botName);
+
+            // Detect if response looks like a list of doctors/therapies/appointments
+            if (combined.includes("👨‍⚕️") || combined.includes("💆") || combined.includes("📅")) {
+                const listDiv = document.createElement("div");
+                listDiv.classList.add("card-list");
+
+                combined.split("\n\n").forEach(block => {
+                    if (block.trim() !== "") {
+                        const infoCard = document.createElement("div");
+                        infoCard.classList.add("info-card");
+                        infoCard.innerHTML = block.replace(/\n/g, "<br>");
+                        listDiv.appendChild(infoCard);
+                    }
+                });
+                botContainer.appendChild(listDiv);
+            } else {
+                const textDiv = document.createElement("div");
+                textDiv.innerHTML = combined.replace(/\n/g, "<br>");
+                botContainer.appendChild(textDiv);
+            }
+
+            chatbox.appendChild(botContainer);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ayursutra Chat - Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        #chatbox {
+            width: 90vw;
+            height: 65vh;
+            border: 1px solid #ccc;
+            background: #fff;
+            overflow-y: auto;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #user-input {
+            width: 75vw;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 16px;
+            margin: 5px 5px 0 0;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        /* Chat bubbles */
+        .msg-card {
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .user-msg {
+            background: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot-msg {
+            background: #e9f5ee;
+            color: black;
+            align-self: flex-start;
+        }
+        .bot-name {
+            font-weight: bold;
+            color: #2d572c;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome, {{ patient_name }}!</h2>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <div id="chatbox"></div>
+    <div>
+        <input type="text" id="user-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById("user-input");
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            addUserMessage(msg);
+            input.value = "";
+
+            await fetchBotResponse(msg);
+        }
+
+        function addUserMessage(msg) {
+            const chatbox = document.getElementById("chatbox");
+            const userCard = document.createElement("div");
+            userCard.classList.add("msg-card", "user-msg");
+            userCard.textContent = "You: " + msg;
+            chatbox.appendChild(userCard);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        async function fetchBotResponse(message) {
+            const chatbox = document.getElementById("chatbox");
+
+            const response = await fetch("/send_message", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+
+            data.forEach(resp => {
+                const botContainer = document.createElement("div");
+                botContainer.classList.add("msg-card", "bot-msg");
+
+                const botName = document.createElement("div");
+                botName.classList.add("bot-name");
+                botName.textContent = "James :";
+                botContainer.appendChild(botName);
+
+                // Text
+                if (resp.text) {
+                    const textDiv = document.createElement("div");
+                    textDiv.innerHTML = resp.text.replace(/\n/g, "<br>");
+                    botContainer.appendChild(textDiv);
+                }
+
+                // Buttons
+                if (resp.buttons) {
+                    const btnContainer = document.createElement("div");
+                    resp.buttons.forEach(button => {
+                        const btn = document.createElement("button");
+                        btn.textContent = button.title;
+                        btn.onclick = () => {
+                            addUserMessage(button.title);
+                            fetchBotResponse(button.payload);
+                        };
+                        btnContainer.appendChild(btn);
+                    });
+                    botContainer.appendChild(btnContainer);
+                }
+
+                chatbox.appendChild(botContainer);
+                chatbox.scrollTop = chatbox.scrollHeight;
+            });
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='popup.css') }}">
+</head>
+<body>
+
+  <h2>Welcome, {{ patient_name }}</h2>
+  <a href="{{ url_for('logout') }}">Logout</a>
+
+  <div id="chatbox"></div>
+  <input id="userInput" type="text" placeholder="Type a message...">
+  <button id="sendBtn">Send</button>
+
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <h2>Book Appointment</h2>
+
+      <label>Therapy:</label>
+      <select id="therapySelect"></select>
+
+      <label>Doctor:</label>
+      <select id="doctorSelect"></select>
+
+      <label>Date:</label>
+      <input type="date" id="dateInput">
+
+      <label>Slot:</label>
+      <select id="slotSelect"></select>
+
+      <button onclick="bookAppointment()">Confirm Booking</button>
+      <button id="closeBtn" onclick="closeModal()">Close</button>
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='popup.js') }}"></script>
+  <script>
+    const chatbox = document.getElementById("chatbox");
+    const input = document.getElementById("userInput");
+
+    document.getElementById("sendBtn").onclick = sendMessage;
+
+    async function sendMessage() {
+      const text = input.value;
+      if (!text) return;
+
+      chatbox.innerHTML += `<p class="userMsg">You: ${text}</p>`;
+      input.value = "";
+
+      const res = await fetch("/send_message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text })
+      });
+      const data = await res.json();
+
+      if (data.length > 0) {
+        data.forEach(msg => {
+          chatbox.innerHTML += `<p class="botMsg">Bot: ${msg.text}</p>`;
+
+          if (msg.text.toLowerCase().includes("book appointment")) {
+            openModal(); // trigger popup
+          }
+        });
+      }
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- ------------------------------------------------------------------------------------------------------------ -->
+
+
+<!-- 
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='popup.css') }}">
+</head>
+<body>
+
+  <h2>Welcome, {{ patient_name }}</h2>
+  <a href="{{ url_for('logout') }}">Logout</a>
+
+  <div id="chatbox"></div>
+
+  <div style="display:flex; width: 90vw; justify-content: center; margin-bottom: 20px;">
+      <input id="userInput" type="text" placeholder="Type a message...">
+      <button id="sendBtn">Send</button>
+  </div>
+
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <h2>Book Appointment</h2>
+
+      <label>Therapy:</label>
+      <select id="therapySelect"></select>
+
+      <label>Doctor:</label>
+      <select id="doctorSelect"></select>
+
+      <label>Date:</label>
+      <input type="date" id="dateInput">
+
+      <label>Slot:</label>
+      <select id="slotSelect"></select>
+
+      <button onclick="bookAppointment()">Confirm Booking</button>
+      <button id="closeBtn" onclick="closeModal()">Close</button>
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='popup.js') }}"></script>
+  <script>
+    const chatbox = document.getElementById("chatbox");
+    const input = document.getElementById("userInput");
+
+    document.getElementById("sendBtn").onclick = sendMessage;
+
+    async function sendMessage() {
+      const text = input.value;
+      if (!text) return;
+
+      const userMsg = document.createElement("div");
+      userMsg.className = "msg-card userMsg";
+      userMsg.textContent = text;
+      chatbox.appendChild(userMsg);
+
+      input.value = "";
+
+      const res = await fetch("/send_message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text })
+      });
+
+      const data = await res.json();
+
+      if (data.length > 0) {
+        data.forEach(msg => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "msg-card botMsg";
+
+          if (msg.cards) {
+              const cardList = document.createElement("div");
+              cardList.className = "card-list";
+              msg.cards.forEach(c => {
+                  const card = document.createElement("div");
+                  card.className = "info-card";
+                  card.innerHTML = `<h4>${c.title}</h4><p>${c.desc}</p>`;
+                  cardList.appendChild(card);
+              });
+              botMsg.appendChild(cardList);
+          } else {
+              botMsg.textContent = msg.text;
+          }
+
+          chatbox.appendChild(botMsg);
+
+          if (msg.text.toLowerCase().includes("book appointment")) {
+            openModal();
+          }
+        });
+      }
+
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='popup.css') }}">
+</head>
+<body>
+
+  <h2>Welcome, {{ patient_name }}</h2>
+  <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+
+  <!-- Chatbox -->
+  <div id="chatbox"></div>
+
+  <div class="input-area">
+    <input id="userInput" type="text" placeholder="Type a message...">
+    <button id="sendBtn">Send</button>
+  </div>
+
+  <!-- Appointment Booking Popup -->
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <h2>Book Appointment</h2>
+
+      <label>Therapy:</label>
+      <select id="therapySelect"></select>
+
+      <label>Doctor:</label>
+      <select id="doctorSelect"></select>
+
+      <label>Date:</label>
+      <input type="date" id="dateInput">
+
+      <label>Slot:</label>
+      <select id="slotSelect"></select>
+
+      <button onclick="bookAppointment()">Confirm Booking</button>
+      <button id="closeBtn" onclick="closeModal()" class="close-btn">Close</button>
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='popup.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayurveda Facts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2efe7;
+      color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #4a7c59;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #fff;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #4a7c59;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #366148;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌿 Ayurveda Facts 🌿</h1>
+  <ul id="facts-list"></ul>
+  <button onclick="showFacts()">Show More Facts</button>
+
+  <script>
+    let facts = [];
+
+    // Fetch plain text file
+    fetch("facts.txt")
+      .then(response => response.text())
+      .then(text => {
+        facts = text.split("\n").filter(f => f.trim() !== ""); // split by line, remove blanks
+        showFacts();
+      })
+      .catch(error => console.error("Error loading facts:", error));
+
+    function showFacts() {
+      const factsList = document.getElementById("facts-list");
+      factsList.innerHTML = ""; // clear previous
+
+      if (facts.length === 0) return;
+
+      // Pick 5 random facts
+      let shuffled = facts.sort(() => 0.5 - Math.random());
+      let selected = shuffled.slice(0, 1);
+
+      selected.forEach(fact => {
+        let li = document.createElement("li");
+        li.textContent = fact;
+        factsList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

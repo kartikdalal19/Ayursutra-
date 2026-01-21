@@ -1,0 +1,177 @@
+
+
+
+
+
+
+/* styles.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background: #f7f9fc;
+    color: #333;
+}
+
+header {
+    background-color: #0f8b8d;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+header nav a {
+    color: #e1f0f0;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #e1f0f0;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+header nav a:hover {
+    background-color: #e1f0f0;
+    color: #0f8b8d;
+}
+
+main {
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+}
+
+.dashboard-container h2 {
+    color: #0f8b8d;
+}
+
+.appointment-summary, .upcoming-appointment {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 14px rgba(15, 139, 141, 0.15);
+}
+
+h3 {
+    margin-top: 0;
+    color: #055353;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+#calendar {
+    max-width: 100%;
+    margin: auto;
+    font-size: 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(15, 139, 141, 0.1);
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    main {
+        padding: 1rem;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    header nav {
+        margin-top: 0.5rem;
+    }
+}
+
+.patient-status-summary {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.patient-status-summary ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.patient-status-summary ul li {
+    margin-bottom: 0.5rem;
+    color: #444;
+    font-size: 1rem;
+}
+
+.progress-wrapper .progress {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 30px;
+}
+
+.progress-wrapper .progress-bar {
+    background-color: #0f8b8d; /* your theme color */
+    height: 100%;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    transition: width 0.6s ease;
+}
+
+/* === Additional Styles for Progress Page and Buttons === */
+
+.progress-card {
+    background: white;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    color: #333;
+}
+
+.progress-card h3 {
+    margin-top: 0;
+    color: #0f8b8d;
+}
+
+.progress-card p {
+    margin: 0.3rem 0;
+    line-height: 1.4;
+}
+
+/* Button Styles */
+button, .btn {
+    background-color: #0f8b8d;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #076666;
+}
+
+/* Link Styling */
+a {
+    color: #0f8b8d;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+

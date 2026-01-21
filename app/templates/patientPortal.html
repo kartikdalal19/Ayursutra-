@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal - AyurSutra</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Booking popup -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='popup.css') }}">
+
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js for Analytics Graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* A slightly different BG for the portal */
+            color: #333;
+        }
+
+        /* Navbar Styles (Reused from landing page for consistency) */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .navbar-brand {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand .logo-icon {
+            color: #28a745;
+            margin-right: 8px;
+        }
+        .nav-stats .stat-item {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 0.35rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+        .nav-actions .nav-link {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content Wrapper */
+        .main-content {
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        /* Portal Header */
+        .portal-header {
+            margin-bottom: 2rem;
+        }
+        .portal-header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+        .portal-header p {
+            color: #6c757d;
+        }
+        
+        /* Custom Card Styles */
+        .dashboard-card {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            padding: 1.5rem;
+            height: auto;
+        }
+        .dashboard-card-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Treatment Progress Card */
+        .progress-circle {
+            width: 100px;
+            height: 100px;
+        }
+        .progress-details .phase {
+            font-weight: 500;
+            color: #6c757d;
+        }
+
+        /* Appointments Card */
+        .appointment-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .appointment-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .appointment-date {
+            text-align: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        .appointment-date .month {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #6c757d;
+        }
+        .appointment-date .day {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .appointment-info h6 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .appointment-info p {
+            color: #6c757d;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Recovery Milestones Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background-color: #e9ecef;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #28a745;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            border: 3px solid white;
+        }
+        .timeline-date {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+        .timeline-content h6 {
+            font-weight: 600;
+        }
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        /* Feedback Section */
+        .feedback-emojis {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+        }
+        .feedback-emojis .emoji {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            opacity: 0.5;
+        }
+        .feedback-emojis .emoji:hover, .feedback-emojis .emoji.selected {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        
+        /* Tip of the Day Modal Styles */
+        .tip-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1050;
+        }
+
+        .tip-modal {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .tip-modal h3 {
+            color: #4a7c59;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .tip-modal p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .close-tip-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: #6c757d;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+
+
+/* Floating Bot Button */
+.bot-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.fab-button {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.fab-button:hover {
+    transform: scale(1.1);
+}
+
+/* Dashboard Modal / Iframe */
+.dashboard-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1050;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-modal {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 80%;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dashboard-modal iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close-dashboard-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.progress-container{
+    height:auto;
+    width:300px;
+}
+
+
+.dash{
+width :1100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#appointments{
+    min-height : 490px;
+width : 650px
+}
+
+
+
+.col-lg-10{
+    height: 800px;
+    width: 60%;
+}
+#anlyt {
+    width: 100%;
+    min-width : 660px;
+    height: 700px;
+}
+
+.g-4{
+    margin-top: 40px;
+    width : 90vw;
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 40px;
+    align-items: center;
+
+}
+.col-lg-5{
+    width: 400px;
+    height: 800px
+}
+body{min-width: 1280px;}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <i class="fa-solid fa-leaf logo-icon"></i> AyurSutra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="nav-stats mx-auto d-none d-lg-flex">
+                    <div class="stat-item"><strong>16B</strong> MARKET (USD)</div>
+                    <div class="stat-item"><strong id="nav-patients-stat">15.4K</strong> PATIENTS</div>
+                    <div class="stat-item"><strong id="nav-success-stat">94.8%</strong> SUCCESS</div>
+                </div>
+                <ul class="navbar-nav ms-auto nav-actions align-items-center">
+                 
+                    
+<!-- Navbar bell icon -->
+<li class="nav-item position-relative">
+    <a class="nav-link position-relative" href="#" id="notifBtn">
+        <i class="fa-solid fa-bell"></i>
+        <span id="notifBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.65em; display:none;">0</span>
+    </a>
+</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-globe"></i> EN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-moon"></i></a>
+                    </li>
+                      <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+<!-- Notification Sidebar -->
+<div id="notificationSidebar" style="
+    display:none; 
+    position:fixed; 
+    top:0; right:0; 
+    width:350px; 
+    height:100%; 
+    background:#fff; 
+    box-shadow:-2px 0 5px rgba(0,0,0,0.3); 
+    z-index:1050; 
+    overflow:auto;
+    padding-top:2rem;">
+    
+    <button id="closeNotifSidebar" style="
+        position:absolute; top:10px; right:10px; 
+        border:none; background:#000000; 
+        font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; border-radius:4px;">&times;</button>
+    
+    <iframe id="notifIframe" src="" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+
+
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Portal Header -->
+            <div class="portal-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h1>Patient Portal</h1>
+<p class="mb-0">Welcome back, {{ patient_name }}</p>
+                </div>
+                
+                <div>
+                    <!-- <a href="bookAppointment.html" class="btn btn-primary"><i class="fa-solid fa-plus me-2"></i>Book Appointment</a> -->
+              <button id="bookAppointmentBtn" class="btn btn-primary">
+  <i class="fa-solid fa-plus me-2"></i>Book Appointment
+</button>
+
+
+
+
+                </div>
+            </div>
+
+          
+
+             
+                
+               
+               
+               
+               
+<div class="col-lg-7">
+
+
+
+
+
+
+<div class="dash">
+
+
+
+    <div class="dashboard-card">
+                        
+   <div class="progress-container">
+  <h3>Your Therapy Progress</h3>
+  <p id="progress-text"></p>
+  <canvas id="progressChart" width="200" height="200"></canvas>
+</div>
+               
+</div> 
+
+
+
+<div class="dashboard-card" id ="appointments">
+    <h5 class="dashboard-card-title">Upcoming Appointments</h5>
+    
+    {% if appointments %}
+        {% for appt in appointments %}
+        <div class="appointment-item">
+            <div class="appointment-date">
+                <div class="month">{{ appt.date.strftime('%b')|upper }}</div>
+                <div class="day">{{ appt.date.day }}</div>
+            </div>
+            <div class="appointment-info flex-grow-1">
+                <h6>{{ appt.therapy_name }}</h6>
+                <p>
+                    <i class="fa-solid fa-clock me-2"></i>
+                    {{ appt.time_label }} - Dr. {{ appt.doctor_name }}
+                </p>
+                <p>
+                    <i class="fa-solid fa-circle-check me-2"></i>
+                    {{ appt.status }}
+                </p>
+            </div>
+
+            <!-- Cancel button -->
+            <form action="{{ url_for('cancel_appointment', appointment_id=appt.appointment_id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-outline-danger btn-sm">
+                    <i class="fa-solid fa-xmark"></i> Cancel
+                </button>
+            </form>
+
+            
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-muted">No upcoming appointments.</p>
+    {% endif %}
+</div>
+
+
+</div>
+
+
+
+
+
+  <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="dashboard-card">
+                        <h5 class="dashboard-card-title">Today's Feedback</h5>
+                        <p class="text-muted small">How are you feeling?</p>
+                        <div class="feedback-emojis">
+                            <span class="emoji" data-value="1">😞</span>
+                            <span class="emoji" data-value="2">😟</span>
+                            <span class="emoji selected" data-value="3">😐</span>
+                            <span class="emoji" data-value="4">🙂</span>
+                            <span class="emoji" data-value="5">😃</span>
+                        </div>
+                        <textarea id="feedbackComments" placeholder="Enter comments here..." class="form-control"></textarea>
+                        <p class="text-muted small mt-4">Symptom Level (1-10):</p>
+                        <div>
+                            <label for="energyRange" class="form-label">Energy Level</label>
+                            <input type="range" class="form-range" min="1" max="10" id="energyRange" value="7">
+                        </div>
+                        <div class="mt-3">
+                            <label for="digestionRange" class="form-label">Digestion</label>
+                            <input type="range" class="form-range" min="1" max="10" id="digestionRange" value="8">
+                        </div>
+                        <div class="mt-3">
+                            <label for="sleepRange" class="form-label">Sleep Quality</label>
+                            <input type="range" class="form-range" min="1" max="10" id="sleepRange" value="8">
+                        </div>
+                        <div class="mt-3">
+                            <label for="stressRange" class="form-label">Stress Level</label>
+                            <input type="range" class="form-range" min="1" max="10" id="stressRange" value="8">
+                        </div>
+                        <div class="mt-3">
+                            <label for="wellnessRange" class="form-label">Overall Wellness</label>
+                            <input type="range" class="form-range" min="1" max="10" id="wellnessRange" value="8">
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-primary" id="submitBtn">Submit Feedback</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="dashboard-card" id = "anlyt">
+                        <h5 class="dashboard-card-title">Progress Analytics</h5>
+                        <!-- <canvas id="analyticsChart" style="width:100%; height:300px;"></canvas> -->
+                         <canvas id="analyticsChart" width="600" height="300"></canvas>
+
+                    </div>
+                </div>
+                <div>
+                    <iframe href="https://f6f17ea5ec4bf0ca53.gradio.live"></iframe>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+
+<!-- Floating Bot Button -->
+<div class="bot-fab" id="open-dashboard">
+    <button class="fab-button">
+        <i class="fa-solid fa-robot"></i>
+    </button>
+</div>
+
+<!-- Dashboard Modal / Iframe Overlay -->
+<div class="dashboard-overlay" id="dashboard-overlay">
+    <div class="dashboard-modal">
+        <button class="close-dashboard-btn" id="close-dashboard">&times;</button>
+        <!-- <iframe src="dashboard.html" frameborder="0"></iframe> -->
+<iframe src="{{ url_for('dashboard') }}" frameborder="0"></iframe>
+   
+    </div>
+</div>
+
+    <!-- Tip of the Day Modal -->
+    <div class="tip-overlay" id="tip-overlay">
+        <div class="tip-modal">
+            <button class="close-tip-btn" id="close-tip-btn">&times;</button>
+            <h3>🌱 Ayurveda Tip of the Day</h3>
+            <p id="tip-of-the-day-content">Loading your daily wellness tip...</p>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // -------------------------
+    // GLOBAL VARIABLES
+    // -------------------------
+const patientId = {{ session['patient_id'] | tojson }};
+    const doctorId = 1; // Constant doctor ID
+
+    let analyticsChart = null;
+    let progressChart = null;
+
+    // -------------------------
+    // TIP OF THE DAY MODAL
+    // -------------------------
+    const tipOverlay = document.getElementById('tip-overlay');
+    const closeTipBtn = document.getElementById('close-tip-btn');
+    const tipContent = document.getElementById('tip-of-the-day-content');
+    let tips = [];
+
+    function showTipModal() {
+        const tip = tips.length ? tips[Math.floor(Math.random() * tips.length)] 
+                                : "Stay hydrated and mindful today!";
+        tipContent.textContent = tip;
+        tipOverlay.style.display = 'flex';
+    }
+
+    function hideTipModal() {
+        tipOverlay.style.display = 'none';
+    }
+
+    closeTipBtn.addEventListener('click', hideTipModal);
+    tipOverlay.addEventListener('click', (e) => { if (e.target === tipOverlay) hideTipModal(); });
+
+    // fetch('tips.txt')
+    fetch("/static/tips.txt")
+
+        .then(res => res.ok ? res.text() : Promise.reject('Failed to fetch tips.txt'))
+        .then(text => {
+            tips = text.split('\n').map(t => t.trim()).filter(t => t);
+            showTipModal();
+        })
+        .catch(err => {
+            console.error(err);
+            showTipModal();
+        });
+
+    // -------------------------
+    // THERAPY PROGRESS DOUGHNUT CHART
+    // -------------------------
+    async function loadProgress(patientId) {
+        try {
+            const res = await fetch(`/progress/${patientId}`);
+            const data = await res.json();
+
+            document.getElementById("progress-text").innerText =
+                `Total Sessions: ${data.total} | Completed: ${data.completed} | Scheduled: ${data.scheduled} | Cancelled: ${data.cancelled}`;
+
+            const ctx = document.getElementById('progressChart').getContext('2d');
+
+            const total = data.completed + data.scheduled + data.cancelled;
+
+            if(progressChart) progressChart.destroy(); // Destroy previous instance
+            progressChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'Scheduled', 'Cancelled'],
+                    datasets: [{
+                        data: [data.completed, data.scheduled, data.cancelled],
+                        backgroundColor: ['#4caf50', '#2196f3', '#f44336']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true, position: 'bottom', labels: { font: { size: 12 }, color: '#333' } },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: ctx => {
+                                    const val = ctx.raw || 0;
+                                    const percent = total ? ((val/total)*100).toFixed(1) : 0;
+                                    return `${ctx.label}: ${val} (${percent}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+        } catch (err) {
+            console.error("Error loading progress:", err);
+        }
+    }
+    loadProgress(patientId);
+
+    // -------------------------
+    // ANALYTICS LINE CHART
+    // -------------------------
+   // Fetch feedback data safely
+async function fetchLast7DaysFeedback(patientId) {
+    try {
+        const res = await fetch(`/api/last-7-days-feedback?patientId=${patientId}`);
+        if (!res.ok) {
+            console.error("API error:", res.status, res.statusText);
+            return null;
+        }
+        const data = await res.json();
+
+        // If API returned error object
+        if (data.error) {
+            console.error("API returned error:", data.error);
+            return null;
+        }
+
+        return data;
+    } catch (err) {
+        console.error("Failed to fetch feedback data:", err);
+        return null;
+    }
+}
+
+// Initialize chart safely
+async function initAnalyticsChart(patientId) {
+    const ctx = document.getElementById('analyticsChart')?.getContext('2d');
+    if (!ctx) {
+        console.warn("Canvas for analyticsChart not found.");
+        return;
+    }
+
+    const data = await fetchLast7DaysFeedback(patientId);
+
+    // Fallback if no data
+    if (!data || !data.dates) {
+        console.warn("No feedback data found. Showing empty chart.");
+        if (analyticsChart) analyticsChart.destroy();
+        analyticsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["No Data"],
+                datasets: [{
+                    label: "No feedback yet",
+                    data: [0],
+                    borderColor: "rgba(200,200,200,0.7)",
+                    fill: false
+                }]
+            },
+            options: { responsive: true }
+        });
+        return;
+    }
+
+    // Destroy old chart if exists
+    if (analyticsChart) analyticsChart.destroy();
+
+    // Build chart
+    analyticsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.dates,
+            datasets: [
+                { label: 'Energy', data: data.energy, borderColor: 'rgba(75,192,192,1)', fill: false },
+                { label: 'Digestion', data: data.digestion, borderColor: 'rgba(255,159,64,1)', fill: false },
+                { label: 'Sleep', data: data.sleep, borderColor: 'rgba(153,102,255,1)', fill: false },
+                { label: 'Stress', data: data.stress, borderColor: 'rgba(255,99,132,1)', fill: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 10
+                }
+            }
+        }
+    });
+}
+
+    // -------------------------
+    // FEEDBACK SUBMISSION
+    // -------------------------
+    document.getElementById('submitBtn')?.addEventListener('click', async () => {
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+
+        const comments = document.getElementById('feedbackComments')?.value || '';
+        const energy = parseInt(document.getElementById('energyRange')?.value);
+        const digestion = parseInt(document.getElementById('digestionRange')?.value);
+        const sleep = parseInt(document.getElementById('sleepRange')?.value);
+        const stress = parseInt(document.getElementById('stressRange')?.value);
+        const wellness = parseInt(document.getElementById('wellnessRange')?.value);
+        const moodEmoji = document.querySelector('.feedback-emojis .emoji.selected');
+        const rating = moodEmoji ? parseInt(moodEmoji.dataset.value) : 3;
+
+        if ([energy,digestion,sleep,stress,wellness].some(v => isNaN(v))) {
+            alert("Please fill all the feedback fields correctly.");
+            submitBtn.disabled = false;
+            return;
+        }
+
+        try {
+            await fetch('/submit-feedback', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({ patient_id: patientId, doctor_id: doctorId, rating, comments })
+            });
+
+            await fetch('/submit_patient_feedback', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({ patient_id: patientId, energy_level: energy, digestion, sleep_quality: sleep, stress_level: stress, mood: rating, overall_wellness: wellness })
+            });
+
+            alert("Feedback submitted successfully!");
+            const updatedData = await fetchLast7DaysFeedback(patientId);
+            if(updatedData) initAnalyticsChart(patientId);
+
+        } catch(err) {
+            console.error("Error submitting feedback:", err);
+            alert("An error occurred while submitting feedback.");
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
+
+    // -------------------------
+    // EMOJI SELECTOR
+    // -------------------------
+    document.querySelectorAll('.feedback-emojis .emoji').forEach(emoji => {
+        emoji.addEventListener('click', () => {
+            document.querySelectorAll('.feedback-emojis .emoji').forEach(e => e.classList.remove('selected'));
+            emoji.classList.add('selected');
+        });
+    });
+
+    // -------------------------
+    // DASHBOARD MODAL
+    // -------------------------
+    const openDashboardBtn = document.getElementById('open-dashboard');
+    const dashboardOverlay = document.getElementById('dashboard-overlay');
+    const closeDashboardBtn = document.getElementById('close-dashboard');
+
+    openDashboardBtn?.addEventListener('click', () => dashboardOverlay.style.display = 'flex');
+    closeDashboardBtn?.addEventListener('click', () => dashboardOverlay.style.display = 'none');
+    dashboardOverlay?.addEventListener('click', e => { if(e.target === dashboardOverlay) dashboardOverlay.style.display = 'none'; });
+
+    // -------------------------
+    // APPOINTMENT BOOKING MODAL
+    // -------------------------
+    const bookBtn = document.getElementById('bookAppointmentBtn');
+    if(bookBtn && typeof openModal === 'function') {
+        bookBtn.addEventListener('click', () => openModal());
+    }
+
+    // -------------------------
+    // NOTIFICATIONS SIDEBAR
+    // -------------------------
+    const notifBtn = document.getElementById('notifBtn');
+    const sidebar = document.getElementById('notificationSidebar');
+    const iframe = document.getElementById('notifIframe');
+    const closeNotifBtn = document.getElementById('closeNotifSidebar');
+    const badge = document.getElementById('notifBadge');
+
+    async function updateBadge() {
+        try {
+            const res = await fetch(`/notifications/count/${patientId}`);
+            const data = await res.json();
+            if(data.count > 0) {
+                badge.textContent = data.count;
+                badge.style.display = 'inline-block';
+            } else badge.style.display = 'none';
+        } catch(err) { console.error(err); }
+    }
+    updateBadge();
+
+    notifBtn?.addEventListener('click', () => {
+        iframe.src = `/notifications/${patientId}`;
+        sidebar.style.display = 'block';
+        badge.style.display = 'none';
+        fetch(`/notifications/mark_read/${patientId}`, { method: 'POST' }).then(updateBadge);
+    });
+    closeNotifBtn?.addEventListener('click', () => { sidebar.style.display='none'; iframe.src=''; });
+
+});
+
+
+// Initialize charts on page load
+loadProgress(patientId);
+initAnalyticsChart(patientId);
+
+</script>
+  <!-- Appointment Booking Popup (from Rasa bot) -->
+<div class="modal" id="bookingModal">
+  <div class="modal-content">
+    <h2>Book Appointment</h2>
+
+    <label>Therapy:</label>
+    <select id="therapySelect"></select>
+
+    <label>Doctor:</label>
+    <select id="doctorSelect"></select>
+
+    <label>Date:</label>
+    <input type="date" id="dateInput">
+
+    <label>Slot:</label>
+    <select id="slotSelect"></select>
+
+    <button onclick="bookAppointment()">Confirm Booking</button>
+    <button id="closeBtn" onclick="closeModal()" class="close-btn">Close</button>
+    <p id="message"></p>
+  </div>
+</div>
+
+<!-- Include Rasa popup.js -->
+<script src="{{ url_for('static', filename='popup.js') }}"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      // Bind Book Appointment button to open the modal
+      const bookBtn = document.getElementById('bookAppointmentBtn');
+      if (bookBtn && typeof openModal === 'function') {
+          bookBtn.addEventListener('click', () => {
+              openModal();
+          });
+      }
+  });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
